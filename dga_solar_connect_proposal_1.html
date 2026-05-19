@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGA Solar Connect — Proposal</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100;200;300;400;500;600;700&display=swap');
+
+
+:root{
+  --navy: var(--secondary-10); 
+  --navy2: var(--secondary-20); 
+  --navy3: var(--secondary-30);
+  --teal: var(--primary-30-base); 
+  --teal-l: var(--background-primary-lighter); 
+  --teal-m: var(--primary-40);
+  --gold: var(--warning-60); 
+  --gold-l: var(--background-warning-light);
+  --red: var(--danger-40); 
+  --red-l: var(--background-negative-light);
+  --blue: var(--info-50); 
+  --blue-l: var(--info-95);
+  --green: var(--positive-40); 
+  --green-l: var(--background-positive-light);
+  --text: var(--foreground-neutral-default); 
+  --text2: var(--foreground-neutral-light); 
+  --text3: var(--foreground-neutral-lighter);
+  --border: var(--stroke-neutral-default); 
+  --border2: var(--stroke-neutral-lighter);
+  --bg: var(--canvas-default); 
+  --white: var(--canvas-white);
+  --r: var(--radius-md); 
+  --rl: var(--radius-xl);
+
+  /* DESIGN.md tokens */
+  --primary-20: #006643;
+  --primary-30-base: #008858;
+  --primary-40: #00b274;
+  --primary-80: #8de3b8;
+  --primary-99: #f6fffb;
+  --background-primary-lighter: #ebfaf4;
+
+  --secondary-10: #142748;
+  --secondary-20: #1f3c70;
+  --secondary-30: #274b8c;
+  --secondary-40-main: #325fb4;
+  --secondary-50: #396bc8;
+  --background-secondary-lighter: #eff3fa;
+
+  --warning-20: #93370d;
+  --warning-60: #fdb022;
+  --background-warning-light: #fffaeb;
+
+  --danger-40: #d92d20;
+  --danger-99: #fffbfa;
+  --background-negative-light: #fef3f2;
+  
+  --positive-40: #079455;
+  --background-positive-light: #ecfdf3;
+
+  --info-50: #0ba5ec;
+  --info-95: #f0f9ff;
+
+  --neutral-60: #62676c;
+  --neutral-96: #f1f3f3;
+
+  --stroke-neutral-default: #dde0e2;
+  --stroke-neutral-lighter: #ebecee;
+  --foreground-neutral-default: #25272a;
+  --foreground-neutral-light: #373c41;
+  --foreground-neutral-lighter: #62676c;
+
+  --canvas-default: #f8f9f9;
+  --canvas-white: #ffffff;
+
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-full: 1000px;
+}
+
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Anuphan', sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.75;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+/* ── COVER ── */
+.cover{
+  background:var(--navy);
+  padding:0;
+  min-height:100vh;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+}
+.cover-top{
+  background:var(--teal);
+  padding:16px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cover-logo{display:flex;align-items:center;gap:12px;}
+.logo-mark{
+  width:40px;height:40px;border-radius:8px;
+  background:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+}
+.logo-text{color:var(--white);font-weight:700;font-size:16px;letter-spacing:.5px;}
+.logo-sub{color:rgba(255,255,255,.7);font-size:11px;font-weight:400;}
+.cover-docnum{
+  font-family:'Anuphan', sans-serif;
+  font-size:11px;color:rgba(255,255,255,.6);
+}
+.cover-body{
+  padding:72px 48px 48px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.cover-klass{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.7);
+  font-size:11px;font-family:'Anuphan', sans-serif;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:6px 14px;border-radius:20px;
+  margin-bottom:28px;width:fit-content;
+}
+.cover-klass::before{content:'●';color:var(--teal-m);font-size:8px;}
+.cover h1{
+  font-family:'Anuphan', sans-serif;
+  font-size:clamp(40px,5.5vw,68px);
+  font-weight:900;
+  color:var(--white);
+  line-height:1.15;
+  margin-bottom:10px;
+}
+.cover h1 em{color:var(--teal-m);font-style:normal;}
+.cover-desc{
+  font-size:16px;color:rgba(255,255,255,.6);
+  font-weight:300;max-width:560px;
+  line-height:1.6;margin-bottom:48px;
+}
+.cover-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:48px;}
+.cover-tag{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.6);
+  font-size:11px;padding:5px 12px;border-radius:20px;
+}
+.cover-partners{
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:28px;
+  display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+}
+.cover-partners-label{font-size:11px;color:rgba(255,255,255,.35);font-family:'Anuphan', sans-serif;letter-spacing:1px;text-transform:uppercase;}
+.partner-chip{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  color:rgba(255,255,255,.75);font-size:12px;font-weight:600;
+  padding:6px 14px;border-radius:6px;
+}
+.partner-chip.anchor{background:rgba(0,136,88,.3);border-color:rgba(0,178,116,.4);color:var(--primary-80);}
+.cover-bottom{
+  padding:20px 48px;
+  border-top:1px solid rgba(255,255,255,.08);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.cover-date{font-size:11px;color:rgba(255,255,255,.35);font-family:'Anuphan', sans-serif;}
+.cover-conf{
+  font-size:10px;font-family:'Anuphan', sans-serif;
+  color:rgba(255,255,255,.25);letter-spacing:1px;text-transform:uppercase;
+}
+
+/* ── PAGE LAYOUT ── */
+.page{background:var(--white);margin:0;border-top:1px solid var(--border2);}
+.page-inner{max-width:900px;margin:0 auto;padding:64px 48px;}
+
+/* ── SECTION HEADERS ── */
+.sec-eyebrow{
+  font-family:'Anuphan', sans-serif;
+  font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.sec-eyebrow::before{content:'';width:24px;height:2px;background:var(--teal);}
+.sec-title{
+  font-family:'Anuphan', sans-serif;
+  font-size:clamp(26px,3vw,36px);font-weight:700;
+  color:var(--navy);margin-bottom:12px;line-height:1.25;
+}
+.sec-title em{color:var(--teal);font-style:normal;}
+.sec-lead{font-size:15px;color:var(--text2);max-width:640px;line-height:1.7;margin-bottom:40px;}
+
+.divider{height:1px;background:var(--border2);margin:40px 0;}
+
+/* ── CALLOUT BOXES ── */
+.callout{border-radius:var(--rl);padding:18px 20px;margin:20px 0;display:flex;gap:14px;align-items:flex-start;}
+.callout.teal{background:var(--teal-l);border-left:3px solid var(--teal);}
+.callout.gold{background:var(--gold-l);border-left:3px solid var(--gold);}
+.callout.red{background:var(--red-l);border-left:3px solid var(--red);}
+.callout.blue{background:var(--blue-l);border-left:3px solid var(--blue);}
+.callout.green{background:var(--green-l);border-left:3px solid var(--green);}
+.callout-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.callout-body{flex:1;}
+.callout-title{font-weight:700;font-size:13px;margin-bottom:4px;color:var(--text);}
+.callout-text{font-size:13px;color:var(--text2);line-height:1.6;}
+
+/* ── ROLE STATEMENT ── */
+.role-box{
+  background:var(--navy);border-radius:var(--rl);
+  padding:32px 36px;margin:32px 0;
+  position:relative;overflow:hidden;
+}
+.role-box::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:160px;height:160px;
+  background:radial-gradient(circle,rgba(0,136,88,.3) 0%,transparent 70%);
+  border-radius:50%;
+}
+.role-label{
+  font-family:'Anuphan', sans-serif;font-size:10px;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--teal-m);margin-bottom:12px;
+}
+.role-statement{
+  font-family:'Anuphan', sans-serif;
+  font-size:clamp(18px,2.5vw,24px);font-weight:700;
+  color:var(--white);line-height:1.5;
+  max-width:680px;
+}
+.role-statement em{color:var(--teal-m);font-style:normal;}
+.role-sub{font-size:13px;color:rgba(255,255,255,.5);margin-top:14px;max-width:580px;line-height:1.6;}
+
+/* ── COMPARISON ── */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:var(--rl);overflow:hidden;margin:24px 0;}
+.cmp-col{background:var(--white);padding:24px;}
+.cmp-col.old{background:var(--danger-99);}
+.cmp-col.new{background:var(--primary-99);}
+.cmp-header{font-weight:700;font-size:13px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border2);}
+.cmp-col.old .cmp-header{color:var(--red);}
+.cmp-col.new .cmp-header{color:var(--teal);}
+.cmp-item{font-size:12px;color:var(--text2);padding:6px 0;border-bottom:1px solid var(--border2);display:flex;gap:8px;align-items:flex-start;}
+.cmp-item:last-child{border-bottom:none;}
+.cmp-item .ci{flex-shrink:0;margin-top:2px;}
+
+/* ── DATA TABLE ── */
+.dtable{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px;}
+.dtable thead tr{background:var(--navy);}
+.dtable th{padding:11px 14px;text-align:left;color:var(--white);font-size:11px;font-family:'Anuphan', sans-serif;letter-spacing:.8px;font-weight:500;}
+.dtable td{padding:11px 14px;border-bottom:1px solid var(--border2);color:var(--text2);vertical-align:top;}
+.dtable tr:last-child td{border-bottom:none;}
+.dtable tr:nth-child(even) td{background:var(--bg);}
+.dtable .td-h{color:var(--text);font-weight:600;}
+.dtable .td-teal{color:var(--teal);font-weight:600;}
+.dtable .td-gold{color:var(--gold);font-weight:600;}
+.dtable .td-green{color:var(--green);font-weight:600;}
+.dtable .td-red{color:var(--red);}
+.badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;font-family:'Anuphan', sans-serif;}
+.badge-teal{background:var(--teal-l);color:var(--teal);}
+.badge-gold{background:var(--gold-l);color:var(--gold);}
+.badge-red{background:var(--red-l);color:var(--red);}
+.badge-green{background:var(--green-l);color:var(--green);}
+.badge-blue{background:var(--blue-l);color:var(--blue);}
+.badge-navy{background:var(--navy);color:var(--white);}
+
+/* ── ARCH DIAGRAM (text/grid version) ── */
+.arch{margin:32px 0;}
+.arch-layer{
+  display:flex;align-items:stretch;gap:0;
+  margin-bottom:2px;
+}
+.arch-label{
+  width:160px;flex-shrink:0;
+  font-family:'Anuphan', sans-serif;font-size:10px;
+  letter-spacing:1px;text-transform:uppercase;
+  color:var(--text3);
+  display:flex;align-items:center;
+  padding-right:16px;
+}
+.arch-nodes{flex:1;display:flex;gap:6px;}
+.arch-node{
+  flex:1;border-radius:var(--r);padding:12px 14px;
+  font-size:12px;font-weight:600;
+  display:flex;flex-direction:column;gap:4px;
+}
+.arch-node .an-title{font-weight:700;font-size:12px;}
+.arch-node .an-sub{font-weight:400;font-size:10px;opacity:.75;line-height:1.4;}
+.arch-node.user{background:var(--gold-l);color:var(--gold);}
+.arch-node.integrator{background:var(--teal-l);color:var(--teal);border:1.5px solid var(--teal);}
+.arch-node.api{background:var(--blue-l);color:var(--blue);}
+.arch-node.data{background:var(--bg);border:1px solid var(--border);color:var(--text2);}
+.arch-node.bank{background:var(--green-l);color:var(--green);}
+.arch-arrow{
+  display:flex;align-items:center;justify-content:center;
+  padding:4px 0;color:var(--text3);font-size:16px;
+  margin-left:160px;
+}
+
+/* ── JOURNEY STEPS ── */
+.jsteps{margin:28px 0;}
+.jstep{
+  display:grid;grid-template-columns:40px 1fr;gap:0;
+  position:relative;margin-bottom:0;
+}
+.jstep::before{
+  content:'';position:absolute;left:19px;top:44px;bottom:0;
+  width:1px;background:var(--border);
+}
+.jstep:last-child::before{display:none;}
+.jstep-num{
+  display:flex;flex-direction:column;align-items:center;
+  padding-top:12px;
+}
+.jstep-dot{
+  width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;font-family:'Anuphan', sans-serif;
+  flex-shrink:0;z-index:1;
+  border:2px solid var(--border);background:var(--white);color:var(--text3);
+}
+.jstep-dot.active{background:var(--teal);border-color:var(--teal);color:var(--white);}
+.jstep-dot.done{background:var(--green);border-color:var(--green);color:var(--white);}
+.jstep-body{padding:10px 0 24px 16px;}
+.jstep-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:6px;flex-wrap:wrap;}
+.jstep-title{font-weight:700;font-size:14px;color:var(--navy);flex:1;}
+.jstep-meta{display:flex;gap:6px;flex-wrap:wrap;}
+.jstep-desc{font-size:13px;color:var(--text2);line-height:1.6;margin-bottom:10px;}
+
+.docs-block{
+  background:var(--bg);border:1px solid var(--border2);
+  border-radius:var(--r);padding:14px 16px;
+}
+.docs-block-title{
+  font-size:10px;font-family:'Anuphan', sans-serif;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--text3);margin-bottom:10px;
+}
+.docs-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.doc-row{font-size:12px;color:var(--text2);display:flex;gap:6px;align-items:flex-start;padding:3px 0;}
+.doc-row .dr-icon{flex-shrink:0;color:var(--teal);}
+.doc-row.auto{color:var(--text3);font-style:italic;}
+.doc-row.auto .dr-icon{color:var(--blue);}
+
+/* ── CONSENT FLOW ── */
+.consent-flow{
+  display:flex;align-items:center;gap:0;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--rl);overflow:hidden;margin:24px 0;
+}
+.cf-step{
+  flex:1;padding:16px 14px;text-align:center;
+  border-right:1px solid var(--border);
+  font-size:12px;
+}
+.cf-step:last-child{border-right:none;}
+.cf-icon{font-size:20px;margin-bottom:6px;}
+.cf-label{font-weight:600;color:var(--navy);font-size:12px;margin-bottom:3px;}
+.cf-sub{font-size:10px;color:var(--text3);line-height:1.4;}
+.cf-arrow{
+  width:28px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text3);font-size:16px;
+  border-right:1px solid var(--border);
+  align-self:stretch;
+}
+
+/* ── GDX DATA TABLE ── */
+.gdx-table{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--rl);overflow:hidden;margin:24px 0;
+}
+.gdx-header{
+  background:var(--navy2);padding:14px 20px;
+  display:flex;align-items:center;gap:10px;
+}
+.gdx-header-title{font-weight:700;font-size:13px;color:var(--white);}
+.gdx-header-sub{font-size:11px;color:rgba(255,255,255,.5);}
+.gdx-row{
+  display:grid;grid-template-columns:180px 140px 1fr 100px;
+  gap:0;border-bottom:1px solid var(--border2);
+  align-items:stretch;
+}
+.gdx-row:last-child{border-bottom:none;}
+.gdx-row.hdr{background:var(--bg);}
+.gdx-cell{
+  padding:11px 16px;font-size:12px;color:var(--text2);
+  border-right:1px solid var(--border2);
+}
+.gdx-cell:last-child{border-right:none;}
+.gdx-row.hdr .gdx-cell{
+  font-family:'Anuphan', sans-serif;font-size:10px;
+  letter-spacing:.5px;text-transform:uppercase;color:var(--text3);
+}
+.gdx-cell.owner{font-weight:600;color:var(--text);}
+.gdx-cell.use{color:var(--teal);font-size:11px;}
+
+/* ── CREDIT PASSPORT ── */
+.passport{
+  border:1.5px solid var(--navy);border-radius:var(--rl);
+  overflow:hidden;margin:28px 0;
+}
+.pp-top{
+  background:var(--navy);padding:18px 24px;
+  display:flex;align-items:center;gap:16px;
+}
+.pp-seal{
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+}
+.pp-title{font-family:'Anuphan', sans-serif;font-weight:700;font-size:17px;color:var(--white);}
+.pp-sub{font-size:11px;color:rgba(255,255,255,.5);}
+.pp-body{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);}
+.pp-section{background:var(--white);padding:18px 20px;}
+.pp-sec-eye{
+  font-family:'Anuphan', sans-serif;font-size:9px;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--text3);margin-bottom:12px;
+}
+.pp-row{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding:5px 0;border-bottom:1px solid var(--border2);font-size:12px;
+}
+.pp-row:last-child{border-bottom:none;}
+.pp-key{color:var(--text2);}
+.pp-val{font-weight:600;color:var(--navy);text-align:right;max-width:55%;}
+.pp-val.teal{color:var(--teal);}
+.pp-val.gold{color:var(--gold);}
+.pp-val.green{color:var(--green);}
+.pp-footer{
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:16px 24px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.pp-score-label{font-size:11px;color:var(--text3);}
+.pp-score-num{
+  font-family:'Anuphan', sans-serif;font-size:32px;font-weight:900;
+  color:var(--teal);line-height:1;
+}
+.pp-score-sub{font-size:11px;color:var(--text3);}
+.pp-bar-wrap{flex:1;min-width:180px;}
+.pp-bar-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.pp-bar-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--gold),var(--green));border-radius:3px;width:78%;}
+.pp-bar-ticks{display:flex;justify-content:space-between;margin-top:4px;}
+.pp-tick{font-size:9px;color:var(--text3);font-family:'Anuphan', sans-serif;}
+.pp-rec{text-align:right;}
+.pp-rec-label{font-size:11px;color:var(--text3);}
+.pp-rec-val{font-family:'Anuphan', sans-serif;font-size:22px;font-weight:700;color:var(--green);}
+.pp-rec-sub{font-size:10px;color:var(--text3);}
+
+/* ── ROADMAP ── */
+.roadmap{margin:28px 0;}
+.rm-phase{
+  display:grid;grid-template-columns:200px 1fr;gap:0;
+  border:1px solid var(--border);border-radius:var(--rl);
+  overflow:hidden;margin-bottom:12px;
+}
+.rm-left{
+  background:var(--navy);padding:24px 20px;
+}
+.rm-phase-num{
+  font-family:'Anuphan', sans-serif;font-size:10px;
+  letter-spacing:2px;color:rgba(255,255,255,.4);margin-bottom:8px;
+}
+.rm-phase-name{
+  font-family:'Anuphan', sans-serif;font-weight:700;
+  font-size:17px;color:var(--white);margin-bottom:6px;
+}
+.rm-timeline{
+  font-size:11px;color:var(--teal-m);
+  font-family:'Anuphan', sans-serif;
+}
+.rm-right{
+  background:var(--white);padding:20px 24px;
+}
+.rm-tag{
+  font-size:11px;font-weight:600;margin-bottom:14px;
+  display:inline-block;
+}
+.rm-items{display:flex;flex-direction:column;gap:6px;}
+.rm-item{font-size:12px;color:var(--text2);display:flex;gap:8px;align-items:flex-start;}
+.rm-item::before{content:'→';color:var(--teal);flex-shrink:0;margin-top:1px;font-weight:700;}
+.rm-section-title{font-weight:700;font-size:12px;color:var(--navy);margin:10px 0 6px;font-family:'Anuphan', sans-serif;letter-spacing:.5px;}
+
+/* ── WIN GRID ── */
+.win-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:24px 0;}
+.win-card{border:1px solid var(--border);border-radius:var(--rl);overflow:hidden;}
+.win-card-hdr{padding:14px 16px;font-weight:700;font-size:12px;}
+.win-card.c1 .win-card-hdr{background:var(--gold-l);color:var(--gold);}
+.win-card.c2 .win-card-hdr{background:var(--teal-l);color:var(--teal);}
+.win-card.c3 .win-card-hdr{background:var(--green-l);color:var(--green);}
+.win-items{padding:12px 16px;}
+.win-item{font-size:12px;color:var(--text2);padding:5px 0;border-bottom:1px solid var(--border2);display:flex;gap:7px;}
+.win-item:last-child{border-bottom:none;}
+.win-item::before{content:'✓';color:var(--teal);flex-shrink:0;font-weight:700;}
+
+/* ── KPI ROW ── */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:var(--rl);overflow:hidden;margin:28px 0;}
+.kpi{background:var(--white);padding:20px 18px;text-align:center;}
+.kpi-before{font-size:11px;color:var(--red);text-decoration:line-through;font-family:'Anuphan', sans-serif;margin-bottom:4px;}
+.kpi-num{font-family:'Anuphan', sans-serif;font-size:30px;font-weight:900;color:var(--teal);line-height:1;margin-bottom:4px;}
+.kpi-label{font-size:11px;color:var(--text2);}
+
+/* ── FOOTNOTE ── */
+.footnote{font-size:11px;color:var(--text3);font-style:italic;margin-top:12px;line-height:1.6;}
+
+/* ── PRINT ── */
+@media print{
+  .page{page-break-before:always;}
+  body{font-size:12px;}
+}
+
+@media(max-width:700px){
+  .cover-body,.page-inner{padding:40px 24px;}
+  .cover-top,.cover-bottom{padding:14px 24px;}
+  .pp-body,.compare,.win-grid,.kpi-row{grid-template-columns:1fr;}
+  .rm-phase{grid-template-columns:1fr;}
+  .gdx-row{grid-template-columns:1fr 1fr;}
+  .docs-grid{grid-template-columns:1fr;}
+  .consent-flow{flex-direction:column;}
+  .cf-arrow{transform:rotate(90deg);}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     COVER
+══════════════════════════════════════════ -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="cover-logo">
+      <div class="logo-mark">🏛</div>
+      <div>
+        <div class="logo-text">DGA — สำนักงานพัฒนารัฐบาลดิจิทัล</div>
+        <div class="logo-sub">Digital Government Agency (Public Organization)</div>
+      </div>
+    </div>
+    <div class="cover-docnum">REF: DGA-SOL-2568-001</div>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-klass">Executive Proposal · พฤษภาคม 2568</div>
+    <h1>DGA Solar<em> Connect</em></h1>
+    <p class="cover-desc">แพลตฟอร์มดิจิทัลกลาง เชื่อมระบบราชการทุกส่วนเป็นหนึ่งเดียว เพื่อให้ประชาชนทุกกลุ่มติดตั้ง Solar Cell ได้ง่าย สะดวก และมีคุณภาพ — โดย DGA ในฐานะ Digital Integrator ของรัฐ</p>
+    <div class="cover-tags">
+      <span class="cover-tag">Digital Government Service</span>
+      <span class="cover-tag">GDX-Powered</span>
+      <span class="cover-tag">PDPA Compliant</span>
+      <span class="cover-tag">ไม่แสวงหากำไร</span>
+      <span class="cover-tag">บ้าน · SME · โรงงาน</span>
+    </div>
+    <div class="cover-partners">
+      <span class="cover-partners-label">Partners</span>
+      <span class="partner-chip anchor">⚡ MEA — คุยแล้ว</span>
+      <span class="partner-chip anchor">⚡ PEA — คุยแล้ว</span>
+      <span class="partner-chip">กกพ.</span>
+      <span class="partner-chip">อบต. / เทศบาล</span>
+      <span class="partner-chip">ธนาคารรัฐ</span>
+      <span class="partner-chip">กรมสรรพากร</span>
+      <span class="partner-chip">กรมที่ดิน</span>
+    </div>
+  </div>
+
+  <div class="cover-bottom">
+    <div class="cover-date">จัดทำโดย: DGA · พฤษภาคม 2568</div>
+    <div class="cover-conf">Confidential — For Internal Review</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 1: WHY & ROLE
+══════════════════════════════════════════ -->
+<div class="page">
+<div class="page-inner">
+
+  <div class="sec-eyebrow">01 — ที่มาและบทบาท</div>
+  <h2 class="sec-title">ทำไม DGA ต้องทำเรื่องนี้?</h2>
+  <p class="sec-lead">ไทยมีศักยภาพ Solar สูงมาก แต่ประชาชนกว่า 80% ที่สนใจยังไม่กล้าติดตั้ง ต้นเหตุไม่ใช่เทคโนโลยี — แต่เป็นความซับซ้อนของกระบวนการราชการ ซึ่งเป็นพื้นที่ที่ DGA ทำได้ดีที่สุด</p>
+
+  <div class="role-box">
+    <div class="role-label">DGA Role Statement</div>
+    <div class="role-statement">DGA ทำหน้าที่ <em>Digital Integrator</em> — ไม่สร้างระบบใหม่ แต่เชื่อมระบบที่มีอยู่แล้วของ MEA, PEA, กกพ., อบต. และธนาคารรัฐ ให้ประชาชนเข้าถึงได้จากจุดเดียว โดยใช้ GDX เป็น backbone</div>
+    <div class="role-sub">เหมือนที่ DGA เคยทำ Biz Portal (เชื่อม DBD + กรมสรรพากร + ประกันสังคม) แต่ครั้งนี้สำหรับกระบวนการติดตั้ง Solar Cell ครบวงจร รวมถึงการขอสินเชื่อผ่านข้อมูลรัฐ</div>
+  </div>
+
+  <div class="callout teal">
+    <span class="callout-icon">🔑</span>
+    <div class="callout-body">
+      <div class="callout-title">จุดแข็งของ DGA ที่ไม่มีหน่วยงานอื่นทำได้</div>
+      <div class="callout-text">DGA ถือ GDX access, มี ThaiD infrastructure, มีประสบการณ์ Biz Portal, และมีความสัมพันธ์กับทุกหน่วยงานรัฐอยู่แล้ว — นี่คือ unfair advantage ที่ทำให้โครงการนี้ทำได้จริง เร็วกว่า และถูกกว่าสร้างใหม่ทั้งหมด</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="sec-eyebrow">ขนาดปัญหา</div>
+  <h3 style="font-family:'Anuphan', sans-serif;font-size:20px;font-weight:700;color:var(--navy);margin-bottom:20px;">ตัวเลขที่ต้องแก้</h3>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-before">3–6 เดือน</div>
+      <div class="kpi-num">&lt;45</div>
+      <div class="kpi-label">วัน เป้าหมายสมัครจน COD</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-before">5+ หน่วยงาน</div>
+      <div class="kpi-num">1</div>
+      <div class="kpi-label">ช่องทางที่ประชาชนต้องติดต่อ</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-before">15–20 ฉบับ</div>
+      <div class="kpi-num">3</div>
+      <div class="kpi-label">เอกสารที่ประชาชนต้องเตรียมเอง</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-before">80% ยังไม่กล้า</div>
+      <div class="kpi-num">500</div>
+      <div class="kpi-label">MW เป้าหมาย 3 ปี</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="cmp-col old">
+      <div class="cmp-header">🔴 ก่อน DGA Solar Connect</div>
+      <div class="cmp-item"><span class="ci">—</span>ยื่นเอกสารแยก 5+ หน่วยงาน ไปเองทุกที่</div>
+      <div class="cmp-item"><span class="ci">—</span>รอ 3–6 เดือน ไม่รู้สถานะ</div>
+      <div class="cmp-item"><span class="ci">—</span>เตรียมเอกสาร 15–20 ฉบับด้วยตัวเอง</div>
+      <div class="cmp-item"><span class="ci">—</span>ขอสินเชื่อยากเพราะแบงก์ต้องการเอกสารมาก</div>
+      <div class="cmp-item"><span class="ci">—</span>ไม่รู้ว่า Transformer พื้นที่ตัวเองรับได้ไหม</div>
+      <div class="cmp-item"><span class="ci">—</span>ไม่มีใครดูแลหลัง COD ถ้าบริษัทปิดตัว</div>
+    </div>
+    <div class="cmp-col new">
+      <div class="cmp-header">🟢 หลัง DGA Solar Connect</div>
+      <div class="cmp-item"><span class="ci">→</span>ยื่นครั้งเดียว DGA ส่งต่อทุกหน่วยงานอัตโนมัติ</div>
+      <div class="cmp-item"><span class="ci">→</span>Track สถานะ Real-time ผ่าน App เดียว</div>
+      <div class="cmp-item"><span class="ci">→</span>GDX ดึงข้อมูลจากราชการแทน ประชาชนใช้แค่บัตรปชช.</div>
+      <div class="cmp-item"><span class="ci">→</span>Solar Credit Passport ส่งธนาคาร Pre-approve 48 ชม.</div>
+      <div class="cmp-item"><span class="ci">→</span>Grid Capacity Dashboard สาธารณะ ดูก่อนสมัคร</div>
+      <div class="cmp-item"><span class="ci">→</span>ระบบ Monitoring กลาง แจ้งเตือนผ่าน App ตลอดอายุ</div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 2: ARCHITECTURE & DATA
+══════════════════════════════════════════ -->
+<div class="page" style="background:var(--bg)">
+<div class="page-inner">
+
+  <div class="sec-eyebrow">02 — Architecture</div>
+  <h2 class="sec-title">DGA เป็น <em>Integrator</em> ตรงกลาง</h2>
+  <p class="sec-lead">ไม่สร้าง portal ใหม่ทั้งหมด แต่เชื่อมระบบที่มีอยู่แล้วเข้าด้วยกัน ผ่าน GDX เป็น backbone และ ThaiD เป็น identity layer</p>
+
+  <div class="arch">
+    <div class="arch-layer">
+      <div class="arch-label">ผู้ใช้งาน</div>
+      <div class="arch-nodes">
+        <div class="arch-node user"><div class="an-title">🏠 บ้านอยู่อาศัย</div><div class="an-sub">ทุกกลุ่มรายได้</div></div>
+        <div class="arch-node user"><div class="an-title">🏢 SME / อาคาร</div><div class="an-sub">ค่าไฟ 10k–100k/เดือน</div></div>
+        <div class="arch-node user"><div class="an-title">🏭 โรงงาน</div><div class="an-sub">100k+ บาท/เดือน</div></div>
+      </div>
+    </div>
+    <div class="arch-arrow">↓ ช่องทางเดียว (DGA Solar Connect App / Portal)</div>
+    <div class="arch-layer">
+      <div class="arch-label">DGA Layer</div>
+      <div class="arch-nodes">
+        <div class="arch-node integrator" style="flex:3"><div class="an-title">DGA Solar Connect — Digital Integrator</div><div class="an-sub">ThaiD e-KYC · GDX Consent Management · Permit Orchestration · Solar Credit Passport Engine · Status Tracking</div></div>
+      </div>
+    </div>
+    <div class="arch-arrow">↓ API Calls ผ่าน GDX (Consent-based)</div>
+    <div class="arch-layer">
+      <div class="arch-label">Permit APIs</div>
+      <div class="arch-nodes">
+        <div class="arch-node api"><div class="an-title">⚡ MEA API</div><div class="an-sub">ขอเชื่อมต่อ + TOU + COD</div></div>
+        <div class="arch-node api"><div class="an-title">⚡ PEA API</div><div class="an-sub">PPIM + Grid Capacity</div></div>
+        <div class="arch-node api"><div class="an-title">🏛 กกพ. API</div><div class="an-sub">จดแจ้งยกเว้นออนไลน์</div></div>
+        <div class="arch-node api"><div class="an-title">🏗 อบต. API</div><div class="an-sub">ขออนุญาตก่อสร้าง</div></div>
+      </div>
+    </div>
+    <div class="arch-arrow">↓ Data Pull ผ่าน GDX</div>
+    <div class="arch-layer">
+      <div class="arch-label">GDX Data</div>
+      <div class="arch-nodes">
+        <div class="arch-node data"><div class="an-title">กรมการปกครอง</div><div class="an-sub">KYC ตัวตน</div></div>
+        <div class="arch-node data"><div class="an-title">กรมที่ดิน</div><div class="an-sub">โฉนด/ราคาประเมิน</div></div>
+        <div class="arch-node data"><div class="an-title">ประกันสังคม</div><div class="an-sub">รายได้ อายุงาน</div></div>
+        <div class="arch-node data"><div class="an-title">กรมสรรพากร</div><div class="an-sub">ภาษีย้อนหลัง 3 ปี</div></div>
+        <div class="arch-node data"><div class="an-title">MEA / PEA</div><div class="an-sub">ค่าไฟ 12 เดือน</div></div>
+      </div>
+    </div>
+    <div class="arch-arrow">↓ Solar Credit Passport → ธนาคาร</div>
+    <div class="arch-layer">
+      <div class="arch-label">Financial</div>
+      <div class="arch-nodes">
+        <div class="arch-node bank"><div class="an-title">🏦 ธอส.</div><div class="an-sub">Solar Roof Loan</div></div>
+        <div class="arch-node bank"><div class="an-title">🏦 ออมสิน</div><div class="an-sub">GSB Green Loan</div></div>
+        <div class="arch-node bank"><div class="an-title">🏦 ธกส.</div><div class="an-sub">เกษตรกร / ชนบท</div></div>
+        <div class="arch-node bank"><div class="an-title">🏦 กรุงไทย</div><div class="an-sub">SME Solar</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 3: GDX DATA + CONSENT
+══════════════════════════════════════════ -->
+<div class="page">
+<div class="page-inner">
+
+  <div class="sec-eyebrow">03 — GDX Data & Consent</div>
+  <h2 class="sec-title">ข้อมูลรัฐที่ใช้ + <em>Consent Flow</em></h2>
+  <p class="sec-lead">ทุกข้อมูลที่ DGA ดึงจาก GDX ต้องได้รับ consent จากประชาชนก่อน โดย DGA ออกแบบ consent flow ให้ชัดเจน granular และเป็นไปตาม PDPA อย่างเคร่งครัด</p>
+
+  <!-- CONSENT FLOW -->
+  <div class="consent-flow">
+    <div class="cf-step">
+      <div class="cf-icon">📱</div>
+      <div class="cf-label">Login ThaiD</div>
+      <div class="cf-sub">ยืนยันตัวตนด้วย Digital ID ที่มีอยู่แล้ว ไม่ต้อง register ใหม่</div>
+    </div>
+    <div class="cf-arrow">→</div>
+    <div class="cf-step">
+      <div class="cf-icon">📋</div>
+      <div class="cf-label">เลือก Consent</div>
+      <div class="cf-sub">ดูรายการข้อมูลที่ระบบจะดึง เลือกได้ว่าจะให้ข้อมูลชุดไหน</div>
+    </div>
+    <div class="cf-arrow">→</div>
+    <div class="cf-step">
+      <div class="cf-icon">🔐</div>
+      <div class="cf-label">ยืนยัน Consent</div>
+      <div class="cf-sub">OTP + Face ID ยืนยันความเป็นเจ้าของข้อมูล บันทึก timestamp</div>
+    </div>
+    <div class="cf-arrow">→</div>
+    <div class="cf-step">
+      <div class="cf-icon">⚡</div>
+      <div class="cf-label">GDX ดึงข้อมูล</div>
+      <div class="cf-sub">ดึงเฉพาะข้อมูลที่ consent ไว้ ส่งให้หน่วยงานที่ต้องการเท่านั้น</div>
+    </div>
+    <div class="cf-arrow">→</div>
+    <div class="cf-step">
+      <div class="cf-icon">🗑</div>
+      <div class="cf-label">Auto Delete</div>
+      <div class="cf-sub">ข้อมูลถูกลบออกจาก DGA หลังใช้งาน ไม่เก็บถาวร</div>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <span class="callout-icon">🛡</span>
+    <div class="callout-body">
+      <div class="callout-title">PDPA Compliance — DGA ไม่เป็นเจ้าของข้อมูล</div>
+      <div class="callout-text">DGA ทำหน้าที่เป็น Data Processor ไม่ใช่ Data Controller · ข้อมูลทุกชุดถูกดึงภายใต้ Consent ที่ชัดเจน · มี audit log ทุก request · ประชาชนสามารถถอน consent และลบข้อมูลได้ตลอดเวลาผ่าน ThaiD</div>
+    </div>
+  </div>
+
+  <!-- GDX DATA TABLE -->
+  <div class="gdx-table">
+    <div class="gdx-header">
+      <div>
+        <div class="gdx-header-title">ข้อมูลที่ DGA ดึงจาก GDX — แยกตามวัตถุประสงค์</div>
+        <div class="gdx-header-sub">ทุกรายการต้องได้รับ consent ก่อน · ใช้เฉพาะวัตถุประสงค์ที่ระบุ</div>
+      </div>
+    </div>
+    <div class="gdx-row hdr">
+      <div class="gdx-cell">หน่วยงานเจ้าของข้อมูล</div>
+      <div class="gdx-cell">ข้อมูล</div>
+      <div class="gdx-cell">ใช้ทำอะไร</div>
+      <div class="gdx-cell">ใช้กับใคร</div>
+    </div>
+    <div class="gdx-row">
+      <div class="gdx-cell owner">กรมการปกครอง<br><span style="font-size:10px;color:var(--text3)">DOPA</span></div>
+      <div class="gdx-cell">ชื่อ-สกุล, ที่อยู่, สถานะบุคคล</div>
+      <div class="gdx-cell use">e-KYC ยืนยันตัวตน · ตรวจว่าชื่อตรงสัญญา กฟ. · ส่งให้ กฟ. และธนาคาร</div>
+      <div class="gdx-cell"><span class="badge badge-gold">ทุกกลุ่ม</span></div>
+    </div>
+    <div class="gdx-row">
+      <div class="gdx-cell owner">MEA / PEA</div>
+      <div class="gdx-cell">ประวัติค่าไฟ 12 เดือน, ประเภทมิเตอร์, Capacity พื้นที่</div>
+      <div class="gdx-cell use">คำนวณขนาด Solar, ประเมิน savings, ดู Capacity ก่อนสมัคร, สร้าง Credit Passport</div>
+      <div class="gdx-cell"><span class="badge badge-gold">ทุกกลุ่ม</span></div>
+    </div>
+    <div class="gdx-row">
+      <div class="gdx-cell owner">กรมที่ดิน</div>
+      <div class="gdx-cell">โฉนด, ราคาประเมิน, ภาระจำนอง</div>
+      <div class="gdx-cell use">ประเมิน Collateral สำหรับสินเชื่อ · ส่งธนาคารแทนการ Copy โฉนด</div>
+      <div class="gdx-cell"><span class="badge badge-teal">บ้าน/SME</span></div>
+    </div>
+    <div class="gdx-row">
+      <div class="gdx-cell owner">ประกันสังคม<br><span style="font-size:10px;color:var(--text3)">SSO</span></div>
+      <div class="gdx-cell">เงินเดือน, อายุงาน, นายจ้าง</div>
+      <div class="gdx-cell use">ยืนยันรายได้แทนสลิปเงินเดือน · คำนวณ DSR · ส่งธนาคาร</div>
+      <div class="gdx-cell"><span class="badge badge-teal">บ้าน/SME</span></div>
+    </div>
+    <div class="gdx-row">
+      <div class="gdx-cell owner">กรมสรรพากร</div>
+      <div class="gdx-cell">รายได้ ภ.ง.ด. 90/91/50 ย้อนหลัง 3 ปี</div>
+      <div class="gdx-cell use">ยืนยันรายได้ freelancer/เจ้าของกิจการ · ช่วยกลุ่มที่ไม่มีสลิปเงินเดือนเข้าถึงสินเชื่อได้</div>
+      <div class="gdx-cell"><span class="badge badge-teal">บ้าน/SME</span></div>
+    </div>
+    <div class="gdx-row">
+      <div class="gdx-cell owner">DBD<br><span style="font-size:10px;color:var(--text3)">กรมพัฒนาธุรกิจ</span></div>
+      <div class="gdx-cell">หนังสือรับรองบริษัท, ผู้มีอำนาจ, ทุนจดทะเบียน</div>
+      <div class="gdx-cell use">แทนการ Copy หนังสือรับรอง · ยืนยันอายุกิจการสำหรับสินเชื่อ SME</div>
+      <div class="gdx-cell"><span class="badge badge-blue">SME/โรงงาน</span></div>
+    </div>
+    <div class="gdx-row">
+      <div class="gdx-cell owner">กรมบัญชีกลาง</div>
+      <div class="gdx-cell">รายได้ข้าราชการ, สิทธิสวัสดิการ</div>
+      <div class="gdx-cell use">ยืนยันรายได้ข้าราชการ · เชื่อมสิทธิสินเชื่อสวัสดิการรัฐ (เช่น ธอส. Solar Roof สวัสดิการ)</div>
+      <div class="gdx-cell"><span class="badge badge-green">ข้าราชการ</span></div>
+    </div>
+  </div>
+
+  <p class="footnote">* ข้อมูลบางรายการอาจต้องเจรจา MOU เพิ่มเติมกับหน่วยงานที่ยังไม่ได้เปิด API ใน GDX ได้แก่ MEA/PEA (ค่าไฟ), กรมสรรพากร (รายได้) — ซึ่งเป็นส่วนของ Phase 2</p>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 4: JOURNEY (ALL GROUPS)
+══════════════════════════════════════════ -->
+<div class="page" style="background:var(--bg)">
+<div class="page-inner">
+
+  <div class="sec-eyebrow">04 — User Journey</div>
+  <h2 class="sec-title">ประสบการณ์ใหม่ — <em>ทุกกลุ่ม</em> เส้นทางเดียวกัน</h2>
+  <p class="sec-lead">DGA ออกแบบ Journey เดียวที่รองรับทุกกลุ่มผู้ใช้ ระบบจะ detect profile และปรับขั้นตอน + เอกสารที่ต้องการเองอัตโนมัติ ประชาชนไม่ต้องรู้ว่าข้างหลังมีกี่ระบบ</p>
+
+  <div class="jsteps">
+
+    <div class="jstep">
+      <div class="jstep-num"><div class="jstep-dot active">1</div></div>
+      <div class="jstep-body">
+        <div class="jstep-header">
+          <div class="jstep-title">Login ThaiD + ให้ Consent + Assessment อัตโนมัติ</div>
+          <div class="jstep-meta">
+            <span class="badge badge-teal">5 นาที</span>
+            <span class="badge badge-green">ฟรี</span>
+          </div>
+        </div>
+        <div class="jstep-desc">ประชาชนเปิด DGA Solar Connect App → Login ด้วย ThaiD → เลือก consent ข้อมูลที่ต้องการให้ระบบดึง → GDX ดึงค่าไฟจาก MEA/PEA, ข้อมูลบ้านจากกรมที่ดิน, รายได้จากประกันสังคม → ระบบ generate รายงาน Assessment ทันที: ขนาด Solar ที่เหมาะสม, ROI, Payback Period, วงเงินสินเชื่อที่น่าจะได้</div>
+        <div class="docs-block">
+          <div class="docs-block-title">สิ่งที่ประชาชนต้องทำ vs ระบบทำแทน</div>
+          <div class="docs-grid">
+            <div class="doc-row"><span class="dr-icon">✅</span> บัตรประชาชน (สำหรับ ThaiD)</div>
+            <div class="doc-row auto"><span class="dr-icon">🤖</span> ค่าไฟ 12 เดือน — GDX ดึงจาก MEA/PEA</div>
+            <div class="doc-row auto"><span class="dr-icon">🤖</span> ข้อมูลบ้าน/โฉนด — GDX ดึงจากกรมที่ดิน</div>
+            <div class="doc-row auto"><span class="dr-icon">🤖</span> รายได้ — GDX ดึงจาก SSO / สรรพากร</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jstep">
+      <div class="jstep-num"><div class="jstep-dot active">2</div></div>
+      <div class="jstep-body">
+        <div class="jstep-header">
+          <div class="jstep-title">ดู Grid Capacity + เลือกแนวทาง</div>
+          <div class="jstep-meta">
+            <span class="badge badge-teal">ทันที</span>
+          </div>
+        </div>
+        <div class="jstep-desc">ระบบแสดง Grid Capacity Map ของพื้นที่ผู้ใช้ (ดึงจาก MEA/PEA ที่คุยไว้แล้ว) → ประชาชนเห็นทันทีว่า Transformer ในพื้นที่รองรับได้ไหม → เลือกว่าต้องการ "ใช้เองอย่างเดียว" หรือ "ขายไฟภาคประชาชน" → ระบบแนะนำขนาดระบบ On/Off/Hybrid ที่เหมาะสม พร้อม TOU Advisor</div>
+        <div class="callout gold" style="margin-top:12px;">
+          <span class="callout-icon">💡</span>
+          <div class="callout-body">
+            <div class="callout-title">จุดเปลี่ยนสำคัญ — ประชาชนรู้ผลก่อนสมัคร</div>
+            <div class="callout-text">ปัจจุบันผู้สมัครไม่รู้ว่า Transformer เต็มหรือไม่จนกว่าจะยื่นแล้วถูกปฏิเสธ ใช้เวลา 30–45 วัน DGA Solar Connect แสดง Capacity ล่วงหน้า ลดการยื่นแล้วถูก Reject ได้ทันที</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jstep">
+      <div class="jstep-num"><div class="jstep-dot active">3</div></div>
+      <div class="jstep-body">
+        <div class="jstep-header">
+          <div class="jstep-title">Solar Credit Passport → ธนาคาร Pre-approve</div>
+          <div class="jstep-meta">
+            <span class="badge badge-teal">48 ชม.</span>
+            <span class="badge badge-blue">ไม่ต้องเตรียมเอกสารเพิ่ม</span>
+          </div>
+        </div>
+        <div class="jstep-desc">ระบบ generate Solar Credit Passport จากข้อมูล GDX ที่ consent ไว้ → ส่งให้ธนาคารพันธมิตรอัตโนมัติ → ธนาคาร Pre-approve วงเงินและดอกเบี้ยภายใน 48 ชั่วโมง → ประชาชนเห็น offer ในแอป เลือกธนาคารที่ต้องการ → ลงนาม e-Signature</div>
+        <div class="docs-block">
+          <div class="docs-block-title">เอกสารที่ธนาคารต้องการ vs ระบบ Generate แทน</div>
+          <div class="docs-grid">
+            <div class="doc-row auto"><span class="dr-icon">🤖</span> สลิปเงินเดือน → GDX SSO แทน</div>
+            <div class="doc-row auto"><span class="dr-icon">🤖</span> สำเนาโฉนด → กรมที่ดิน API แทน</div>
+            <div class="doc-row auto"><span class="dr-icon">🤖</span> หนังสือรับรองบริษัท → DBD API แทน (SME)</div>
+            <div class="doc-row auto"><span class="dr-icon">🤖</span> บิลค่าไฟ → MEA/PEA API แทน</div>
+            <div class="doc-row"><span class="dr-icon">✅</span> e-Signature ยืนยันสัญญากู้</div>
+            <div class="doc-row auto"><span class="dr-icon">🤖</span> บัตรประชาชน → ThaiD e-KYC แทน</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jstep">
+      <div class="jstep-num"><div class="jstep-dot active">4</div></div>
+      <div class="jstep-body">
+        <div class="jstep-header">
+          <div class="jstep-title">ยื่นขออนุญาตทุกหน่วยงาน — อัตโนมัติผ่าน DGA</div>
+          <div class="jstep-meta">
+            <span class="badge badge-teal">14–21 วัน</span>
+            <span class="badge badge-green">ยื่นพร้อมกัน 4 หน่วยงาน</span>
+          </div>
+        </div>
+        <div class="jstep-desc">ประชาชนกดปุ่มเดียว → DGA ส่ง API ไปยัง 4 หน่วยงานพร้อมกัน → ติดตามสถานะแต่ละหน่วยงานแบบ Real-time → หน่วยงานแจ้งผลกลับมาผ่าน API → DGA รวบรวมและแจ้งประชาชนผ่าน App</div>
+        <div class="docs-block">
+          <div class="docs-block-title">DGA ยื่นแทนใคร ด้วยอะไร</div>
+          <div class="docs-grid">
+            <div class="doc-row auto"><span class="dr-icon">🤖</span> MEA/PEA: คำขอเชื่อมต่อ + SLD (บริษัทติดตั้ง upload)</div>
+            <div class="doc-row auto"><span class="dr-icon">🤖</span> กกพ.: จดแจ้งยกเว้น (DGA generate form จาก data ที่มี)</div>
+            <div class="doc-row auto"><span class="dr-icon">🤖</span> อบต./เทศบาล: คำขอ ข.1 (ถ้าต้องใช้)</div>
+            <div class="doc-row"><span class="dr-icon">✅</span> รูปถ่ายหน้าบ้าน + หลังคา (ถ่ายผ่าน App)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jstep">
+      <div class="jstep-num"><div class="jstep-dot active">5</div></div>
+      <div class="jstep-body">
+        <div class="jstep-header">
+          <div class="jstep-title">ติดตั้ง + กฟ. ตรวจ + เปลี่ยนมิเตอร์ TOU + COD</div>
+          <div class="jstep-meta">
+            <span class="badge badge-teal">7–14 วัน</span>
+          </div>
+        </div>
+        <div class="jstep-desc">บริษัทติดตั้ง upload เอกสารหลังติดตั้ง (SLD, รูปถ่าย, ใบรับรองวิศวกร) ผ่าน DGA Portal → DGA Pre-check ก่อนส่ง กฟ. → กฟ. นัดตรวจ → ผ่าน: เปลี่ยน TOU Meter → COD → ระบบ active</div>
+        <div class="docs-block">
+          <div class="docs-block-title">เอกสารที่บริษัทติดตั้งต้องทำ (ไม่ใช่ประชาชน)</div>
+          <div class="docs-grid">
+            <div class="doc-row"><span class="dr-icon">📐</span> Single Line Diagram (วิศวกรเซ็น)</div>
+            <div class="doc-row"><span class="dr-icon">📸</span> รูปถ่ายครบชุดตาม กฟ. กำหนด</div>
+            <div class="doc-row"><span class="dr-icon">✅</span> ใบรับรองการติดตั้ง วสท. 022013-22</div>
+            <div class="doc-row"><span class="dr-icon">📋</span> Spec Sheet + Serial Number ทุกชิ้น</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jstep">
+      <div class="jstep-num"><div class="jstep-dot done">✓</div></div>
+      <div class="jstep-body">
+        <div class="jstep-header">
+          <div class="jstep-title">COD — ประหยัดค่าไฟ + Monitoring + ลดหย่อนภาษี</div>
+          <div class="jstep-meta">
+            <span class="badge badge-navy">ตลอดอายุระบบ</span>
+          </div>
+        </div>
+        <div class="jstep-desc">ระบบ Monitor ผ่าน DGA Solar Connect App อัตโนมัติ → แจ้งเตือนเมื่อประสิทธิภาพลด → Auto-generate ใบรับรองค่าใช้จ่ายสำหรับยื่นลดหย่อนภาษี 200,000 บาท → ยอดขายไฟโอนเข้าบัญชีที่แจ้งไว้</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PASSPORT SAMPLE -->
+  <div class="sec-eyebrow" style="margin-top:40px">Solar Credit Passport — ตัวอย่าง</div>
+  <div class="passport">
+    <div class="pp-top">
+      <div class="pp-seal">🪪</div>
+      <div>
+        <div class="pp-title">Solar Credit Passport</div>
+        <div class="pp-sub">ออกโดย DGA Solar Connect · ข้อมูลจาก GDX · ใช้ได้ 90 วัน · PDPA Compliant</div>
+      </div>
+      <div style="margin-left:auto;text-align:right">
+        <div style="font-family:'Anuphan', sans-serif;font-size:10px;color:rgba(255,255,255,.4);">REF: SCP-2568-XXXXX</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.5);">Verified by DGA GDX</div>
+      </div>
+    </div>
+    <div class="pp-body">
+      <div class="pp-section">
+        <div class="pp-sec-eye">ตัวตน & ทรัพย์สิน (กรมการปกครอง + กรมที่ดิน)</div>
+        <div class="pp-row"><span class="pp-key">ยืนยันตัวตน</span><span class="pp-val teal">✓ ThaiD Verified</span></div>
+        <div class="pp-row"><span class="pp-key">ชื่อตรงสัญญา กฟ.</span><span class="pp-val teal">✓ ตรงกัน</span></div>
+        <div class="pp-row"><span class="pp-key">มูลค่าบ้าน (ประเมิน)</span><span class="pp-val">2,850,000 บาท</span></div>
+        <div class="pp-row"><span class="pp-key">ภาระจำนองคงเหลือ</span><span class="pp-val">1,200,000 บาท</span></div>
+        <div class="pp-row"><span class="pp-key">Net Collateral</span><span class="pp-val green">1,650,000 บาท</span></div>
+      </div>
+      <div class="pp-section">
+        <div class="pp-sec-eye">รายได้ & ความสามารถชำระ (SSO + สรรพากร)</div>
+        <div class="pp-row"><span class="pp-key">รายได้/เดือน</span><span class="pp-val gold">45,000 บาท</span></div>
+        <div class="pp-row"><span class="pp-key">แหล่งรายได้</span><span class="pp-val teal">✓ SSO Verified</span></div>
+        <div class="pp-row"><span class="pp-key">อายุงานปัจจุบัน</span><span class="pp-val">8 ปี 3 เดือน</span></div>
+        <div class="pp-row"><span class="pp-key">DSR ปัจจุบัน</span><span class="pp-val green">28%</span></div>
+        <div class="pp-row"><span class="pp-key">วงเงินแนะนำ</span><span class="pp-val gold">160,000 บาท</span></div>
+      </div>
+      <div class="pp-section">
+        <div class="pp-sec-eye">Energy Profile (MEA/PEA)</div>
+        <div class="pp-row"><span class="pp-key">ค่าไฟเฉลี่ย/เดือน</span><span class="pp-val" style="color:var(--red)">3,840 บาท</span></div>
+        <div class="pp-row"><span class="pp-key">Peak usage pattern</span><span class="pp-val">กลางวัน 65%</span></div>
+        <div class="pp-row"><span class="pp-key">ขนาด Solar แนะนำ</span><span class="pp-val gold">8 kWp On-Grid</span></div>
+        <div class="pp-row"><span class="pp-key">Savings/เดือน (ประมาณ)</span><span class="pp-val green">~2,500 บาท</span></div>
+        <div class="pp-row"><span class="pp-key">Payback Period</span><span class="pp-val">6.8 ปี</span></div>
+      </div>
+    </div>
+    <div class="pp-footer">
+      <div>
+        <div class="pp-score-label">Solar Credit Score</div>
+        <div class="pp-score-num">782</div>
+        <div class="pp-score-sub">ระดับ: ดีมาก — อนุมัติได้ทันที</div>
+      </div>
+      <div class="pp-bar-wrap">
+        <div class="pp-bar-track"><div class="pp-bar-fill"></div></div>
+        <div class="pp-bar-ticks">
+          <span class="pp-tick">300</span><span class="pp-tick">500</span><span class="pp-tick">700</span><span class="pp-tick">850</span>
+        </div>
+      </div>
+      <div class="pp-rec">
+        <div class="pp-rec-label">วงเงินแนะนำ</div>
+        <div class="pp-rec-val">160,000 ฿</div>
+        <div class="pp-rec-sub">ดอกเบี้ยแนะนำ 3.90% (ธอส. Solar Roof)</div>
+      </div>
+    </div>
+  </div>
+  <p class="footnote">* ตัวเลขเป็น Mock Data เพื่อแสดง format · ข้อมูลจริงดึงจาก GDX ภายใต้ consent ของเจ้าของข้อมูลเท่านั้น</p>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 5: ROADMAP & WIN
+══════════════════════════════════════════ -->
+<div class="page">
+<div class="page-inner">
+
+  <div class="sec-eyebrow">05 — Roadmap</div>
+  <h2 class="sec-title">แผนดำเนินงาน — <em>3 Phase</em></h2>
+  <p class="sec-lead">เริ่มจาก MEA+PEA ที่คุยไว้แล้ว เป็น Anchor ทำ Pilot ก่อน แล้วค่อย scale และเพิ่ม GDX data sources ตามลำดับ</p>
+
+  <div class="roadmap">
+    <div class="rm-phase">
+      <div class="rm-left">
+        <div class="rm-phase-num">PHASE 01</div>
+        <div class="rm-phase-name">Foundation</div>
+        <div class="rm-timeline">เดือน 1–6</div>
+      </div>
+      <div class="rm-right">
+        <span class="rm-tag" style="color:var(--gold)">▶ เริ่มได้ทันที — MEA/PEA พร้อมแล้ว</span>
+        <div class="rm-section-title">Integration Priority</div>
+        <div class="rm-items">
+          <div class="rm-item">เชื่อม MEA MyEnergy API + PEA PPIM API (Anchor Partners)</div>
+          <div class="rm-item">Grid Capacity Dashboard สาธารณะ (ดึงจาก MEA/PEA)</div>
+          <div class="rm-item">ThaiD e-KYC + Consent Management (DGA มีอยู่แล้ว)</div>
+          <div class="rm-item">เชื่อม กรมการปกครอง + กรมที่ดิน ผ่าน GDX (เปิดแล้ว)</div>
+        </div>
+        <div class="rm-section-title">Pilot</div>
+        <div class="rm-items">
+          <div class="rm-item">Pilot กรุงเทพฯ 3 เขต (MEA) + 3 จังหวัด (PEA)</div>
+          <div class="rm-item">บ้านอยู่อาศัย + SME นำร่อง 1,000 ราย</div>
+          <div class="rm-item">MOU กกพ. เพื่อ API จดแจ้ง</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-left">
+        <div class="rm-phase-num">PHASE 02</div>
+        <div class="rm-phase-name">Scale</div>
+        <div class="rm-timeline">เดือน 7–18</div>
+      </div>
+      <div class="rm-right">
+        <span class="rm-tag" style="color:var(--teal)">▶ เพิ่ม GDX Data + Credit Passport</span>
+        <div class="rm-section-title">GDX Expansion</div>
+        <div class="rm-items">
+          <div class="rm-item">เชื่อม ประกันสังคม + สรรพากร ใน GDX (MOU เพิ่มเติม)</div>
+          <div class="rm-item">Solar Credit Passport เต็มรูปแบบ → ธอส./ออมสิน/ธกส.</div>
+          <div class="rm-item">เชื่อม DBD สำหรับ SME (หนังสือรับรองบริษัท)</div>
+        </div>
+        <div class="rm-section-title">Permit Automation</div>
+        <div class="rm-items">
+          <div class="rm-item">เชื่อม อบต./เทศบาล ระบบขออนุญาตก่อสร้าง</div>
+          <div class="rm-item">ยื่น 4 หน่วยงานพร้อมกัน (MEA/PEA + กกพ. + อบต.)</div>
+          <div class="rm-item">เปิดให้ทุกจังหวัดทั่วประเทศ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rm-phase">
+      <div class="rm-left">
+        <div class="rm-phase-num">PHASE 03</div>
+        <div class="rm-phase-name">Ecosystem</div>
+        <div class="rm-timeline">เดือน 19+</div>
+      </div>
+      <div class="rm-right">
+        <span class="rm-tag" style="color:var(--green)">▶ Policy Push + Lifetime Service</span>
+        <div class="rm-section-title">Policy</div>
+        <div class="rm-items">
+          <div class="rm-item">ผลักดันขยายโควตา Solar ภาคประชาชน 90 → 500 MW</div>
+          <div class="rm-item">ผลักดัน พ.ร.บ. Solar Rooftop เฉพาะ ลดขั้นตอนถาวร</div>
+        </div>
+        <div class="rm-section-title">Advanced Services</div>
+        <div class="rm-items">
+          <div class="rm-item">Lifetime Monitoring เชื่อม MEA/PEA เพื่อ data จริง</div>
+          <div class="rm-item">Auto Tax Certificate ส่งกรมสรรพากรอัตโนมัติ</div>
+          <div class="rm-item">Carbon Credit Pipeline เชื่อม TGO</div>
+          <div class="rm-item">เป้าหมาย 100,000 ราย · 500 MW</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="sec-eyebrow">06 — Value for All</div>
+  <h2 class="sec-title">ทุก Party ได้ประโยชน์ — <em>ไม่มีใครเสีย</em></h2>
+
+  <div class="win-grid">
+    <div class="win-card c1">
+      <div class="win-card-hdr">🏠 ประชาชน / SME / โรงงาน</div>
+      <div class="win-items">
+        <div class="win-item">ประสบการณ์เดียว ไม่ต้องรู้ว่าข้างหลังมีกี่ระบบ</div>
+        <div class="win-item">COD ภายใน 45 วัน (จาก 3–6 เดือน)</div>
+        <div class="win-item">เตรียมเอกสารแค่ 3 รายการ ที่เหลือ GDX ดึงแทน</div>
+        <div class="win-item">สินเชื่อ Pre-approve 48 ชม. ไม่ต้องพิสูจน์ตัวเองซ้ำ</div>
+        <div class="win-item">รู้ Grid Capacity ก่อนสมัคร ไม่เสียเวลาฟรี</div>
+        <div class="win-item">ลดหย่อนภาษี 200,000 บาท Auto Certificate</div>
+        <div class="win-item">ประหยัดค่าไฟ 30–70% ต่อเดือน</div>
+      </div>
+    </div>
+    <div class="win-card c2">
+      <div class="win-card-hdr">⚡ MEA / PEA / กกพ. / อบต.</div>
+      <div class="win-items">
+        <div class="win-item">รับเอกสารครบก่อนยื่น ลดภาระ Reject ซ้ำ</div>
+        <div class="win-item">ระบบ API ลดงาน Manual ของเจ้าหน้าที่</div>
+        <div class="win-item">ข้อมูล Grid ที่ส่งมาช่วย Plan อัปเกรด Transformer</div>
+        <div class="win-item">รายได้ TOU Meter เพิ่มขึ้นตาม Solar ที่ขยาย</div>
+        <div class="win-item">ภาพลักษณ์สนับสนุน Green Energy ดีขึ้นชัดเจน</div>
+        <div class="win-item">DGA Pre-check ลด Anti-islanding ที่ไม่ผ่านมาตรฐาน</div>
+      </div>
+    </div>
+    <div class="win-card c3">
+      <div class="win-card-hdr">🏦 ธนาคารรัฐ + DGA</div>
+      <div class="win-items">
+        <div class="win-item">ธนาคาร: ข้อมูล pre-verified จาก GDX ลดความเสี่ยง NPL</div>
+        <div class="win-item">ธนาคาร: ตลาดสินเชื่อ Solar ขยายจาก 80% ที่ยังไม่กล้า</div>
+        <div class="win-item">ธนาคาร: Green Loan Portfolio ตาม ESG Commitment</div>
+        <div class="win-item">DGA: ขยาย GDX use case ให้เห็นผลจริงต่อประชาชน</div>
+        <div class="win-item">DGA: สร้าง trust ในระบบดิจิทัลรัฐผ่าน impact จริง</div>
+        <div class="win-item">รัฐ: ลดคาร์บอน 300,000 tCO₂/ปี เมื่อถึง 500 MW</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- NEXT STEPS -->
+  <div class="sec-eyebrow">Next Steps</div>
+  <h3 style="font-family:'Anuphan', sans-serif;font-size:22px;font-weight:700;color:var(--navy);margin-bottom:20px;">สิ่งที่ต้องดำเนินการต่อ</h3>
+
+  <table class="dtable">
+    <thead><tr><th>#</th><th>Action</th><th>ผู้รับผิดชอบ</th><th>Timeline</th><th>สถานะ</th></tr></thead>
+    <tbody>
+      <tr><td class="td-h">1</td><td>MOU DGA × MEA — API Sharing (ค่าไฟ + Capacity)</td><td>DGA + MEA</td><td>เดือน 1–2</td><td><span class="badge badge-gold">คุยแล้ว</span></td></tr>
+      <tr><td class="td-h">2</td><td>MOU DGA × PEA — API Sharing (PPIM + Capacity)</td><td>DGA + PEA</td><td>เดือน 1–2</td><td><span class="badge badge-gold">คุยแล้ว</span></td></tr>
+      <tr><td class="td-h">3</td><td>ออกแบบ Consent Framework ตาม PDPA (ร่วมกับ PDPC)</td><td>DGA + PDPC</td><td>เดือน 1–3</td><td><span class="badge badge-teal">เริ่มได้เลย</span></td></tr>
+      <tr><td class="td-h">4</td><td>เชื่อม GDX — กรมการปกครอง + กรมที่ดิน (เปิดแล้ว)</td><td>DGA</td><td>เดือน 2–3</td><td><span class="badge badge-green">GDX พร้อม</span></td></tr>
+      <tr><td class="td-h">5</td><td>MOU DGA × กกพ. — API จดแจ้งยกเว้น</td><td>DGA + กกพ.</td><td>เดือน 2–4</td><td><span class="badge badge-blue">เตรียม MOU</span></td></tr>
+      <tr><td class="td-h">6</td><td>MOU ธนาคารรัฐ (ธอส./ออมสิน) — Solar Credit Passport API</td><td>DGA + ธนาคาร</td><td>เดือน 3–5</td><td><span class="badge badge-blue">เตรียม MOU</span></td></tr>
+      <tr><td class="td-h">7</td><td>Pilot 6 พื้นที่ (3 MEA + 3 PEA) เป้า 1,000 ราย</td><td>DGA + MEA + PEA</td><td>เดือน 4–6</td><td><span class="badge badge-blue">ขึ้นกับ MOU</span></td></tr>
+      <tr><td class="td-h">8</td><td>MOU SSO + กรมสรรพากร — ข้อมูลรายได้ (Phase 2)</td><td>DGA</td><td>เดือน 6–9</td><td><span class="badge badge-red">ต้องเจรจา</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout teal" style="margin-top:32px;">
+    <span class="callout-icon">🎯</span>
+    <div class="callout-body">
+      <div class="callout-title">สรุปวิสัยทัศน์ DGA Solar Connect</div>
+      <div class="callout-text">DGA ใช้ Infrastructure ที่มีอยู่แล้ว (GDX, ThaiD, Biz Portal experience) เพื่อทำให้การติดตั้ง Solar Cell กลายเป็นบริการดิจิทัลรัฐที่ประชาชนเข้าถึงได้ง่าย — เหมือนที่ Biz Portal ทำให้การจดทะเบียนธุรกิจกลายเป็นเรื่องง่าย แต่ครั้งนี้ impact ใหญ่กว่า เพราะแตะชีวิตประชาชนทุกคนที่ต้องการลดค่าไฟ</div>
+    </div>
+  </div>
+
+  <p class="footnote" style="margin-top:24px;text-align:center;">
+    DGA Solar Connect · สำนักงานพัฒนารัฐบาลดิจิทัล (องค์การมหาชน) · พฤษภาคม 2568<br>
+    เอกสารนี้จัดทำเพื่อใช้ภายในและสำหรับหารือกับ Partners · ไม่เผยแพร่สู่สาธารณะ
+  </p>
+
+</div>
+</div>
+
+</body>
+</html>
