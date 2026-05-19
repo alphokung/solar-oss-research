@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SolarOne — Journey + Document Checklist</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --sun:#F5A623; --sun-d:#92400E; --sun-l:#FEF9EC;
+  --sky:#1A3A5C; --sky-m:#2563A8; --sky-l:#EBF4FF;
+  --green:#16A34A; --green-d:#14532D; --green-l:#DCFCE7;
+  --coral:#DC4444; --coral-l:#FEE2E2;
+  --purple:#7C3AED; --purple-l:#EDE9FE;
+  --slate:#475569; --slate-l:#F1F5F9;
+  --border:#E2E8F0; --text:#1E293B; --text2:#475569; --text3:#94A3B8;
+  --bg:#F8FAFC; --white:#fff;
+  --r:10px; --rl:18px;
+  --sh:0 1px 3px rgba(0,0,0,.07),0 4px 14px rgba(0,0,0,.04);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'IBM Plex Sans Thai',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.7}
+
+/* HEADER */
+.hdr{background:linear-gradient(135deg,#0a1e38,#1a3a5c,#0d3060);padding:36px 32px 28px;position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;top:-60px;right:-60px;width:220px;height:220px;background:radial-gradient(circle,rgba(245,166,35,.2) 0%,transparent 70%);border-radius:50%}
+.hdr-badge{display:inline-block;background:rgba(245,166,35,.15);border:1px solid rgba(245,166,35,.4);color:#F5A623;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:20px;margin-bottom:14px}
+.hdr h1{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:#fff;line-height:1.2;margin-bottom:6px}
+.hdr h1 span{color:#F5A623}
+.hdr-sub{color:rgba(255,255,255,.6);font-size:13px;max-width:520px}
+
+/* TOPNAV */
+.topnav{display:flex;gap:0;background:var(--white);border-bottom:1px solid var(--border);overflow-x:auto;position:sticky;top:0;z-index:200;scrollbar-width:none}
+.topnav::-webkit-scrollbar{display:none}
+.tnb{padding:12px 18px;border:none;background:none;font-family:inherit;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:.2s;letter-spacing:.3px}
+.tnb:hover{color:var(--sky-m);background:var(--sky-l)}
+.tnb.on{color:var(--sky-m);border-bottom-color:var(--sky-m);background:var(--sky-l)}
+
+/* LAYOUT */
+.wrap{max-width:1080px;margin:0 auto;padding:28px 28px 60px}
+.sec{display:none}
+.sec.on{display:block}
+
+/* TYPOGRAPHY */
+.sec-title{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--sky);margin-bottom:4px}
+.sec-sub{color:var(--text2);font-size:13px;margin-bottom:24px}
+
+/* CARDS */
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:22px;box-shadow:var(--sh);margin-bottom:14px}
+
+/* PROFILE SELECTOR */
+.prof-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.prof-btn{border:2px solid var(--border);border-radius:var(--rl);padding:18px 14px;text-align:center;cursor:pointer;background:var(--white);transition:.2s;font-family:inherit}
+.prof-btn:hover{border-color:var(--sky-m);background:var(--sky-l)}
+.prof-btn.sel-house{border-color:var(--sun);background:var(--sun-l)}
+.prof-btn.sel-biz{border-color:var(--sky-m);background:var(--sky-l)}
+.prof-btn.sel-factory{border-color:var(--green);background:var(--green-l)}
+.prof-emoji{font-size:26px;margin-bottom:6px}
+.prof-name{font-weight:700;font-size:13px;color:var(--text)}
+.prof-desc{font-size:11px;color:var(--text2);margin-top:3px}
+
+/* JOURNEY BODY */
+.jbody{display:none}
+.jbody.vis{display:block}
+
+/* STEP BLOCK */
+.step-block{position:relative;padding-left:52px;padding-bottom:8px;margin-bottom:6px}
+.step-block::before{content:'';position:absolute;left:19px;top:42px;bottom:-6px;width:2px;background:var(--border)}
+.step-block:last-child::before{display:none}
+.step-circle{position:absolute;left:0;top:4px;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:17px;border:2px solid var(--white);box-shadow:0 0 0 2px var(--border);z-index:1}
+.step-circle.s-prep{background:#FFF7ED}
+.step-circle.s-doc{background:#EFF6FF}
+.step-circle.s-wait{background:#F1F5F9}
+.step-circle.s-action{background:#DCFCE7}
+.step-circle.s-warn{background:#FEE2E2}
+.step-circle.s-tou{background:var(--purple-l)}
+.step-circle.s-done{background:var(--green-l)}
+
+.step-inner{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:16px 18px;box-shadow:var(--sh)}
+.step-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.step-num{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;color:var(--text3)}
+.step-name{font-weight:700;font-size:14px;color:var(--text);flex:1}
+.pill{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;white-space:nowrap}
+.pill-time{background:var(--sun-l);color:var(--sun-d)}
+.pill-cost{background:var(--coral-l);color:var(--coral)}
+.pill-free{background:var(--green-l);color:var(--green-d)}
+.pill-info{background:var(--sky-l);color:var(--sky-m)}
+.pill-warn{background:#FEF9C3;color:#713F12}
+
+.step-desc{font-size:13px;color:var(--text2);margin-bottom:12px;line-height:1.6}
+
+/* DOC CHECKLIST */
+.doc-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);margin-bottom:8px;margin-top:4px}
+.doc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.doc-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--text);background:var(--slate-l);border-radius:8px;padding:8px 10px;border:1px solid var(--border)}
+.doc-item.must{background:#EFF6FF;border-color:#BFDBFE}
+.doc-item.maybe{background:#FFFBEB;border-color:#FDE68A}
+.doc-icon{flex-shrink:0;font-size:13px;margin-top:1px}
+.doc-label{flex:1;line-height:1.4}
+.doc-label strong{display:block;font-weight:600;font-size:12px}
+.doc-label span{font-size:11px;color:var(--text2)}
+
+/* NOTES */
+.note-box{border-radius:var(--r);padding:12px 14px;font-size:12px;margin-top:10px;display:flex;align-items:flex-start;gap:8px}
+.note-box.warn{background:#FFFBEB;border:1px solid #FDE68A;color:#78350F}
+.note-box.info{background:var(--sky-l);border:1px solid #BFDBFE;color:var(--sky)}
+.note-box.ok{background:var(--green-l);border:1px solid #86EFAC;color:var(--green-d)}
+.note-box .ni{font-size:15px;flex-shrink:0}
+
+/* TOU WIZARD */
+.wizard{background:var(--white);border:2px solid var(--purple);border-radius:var(--rl);overflow:hidden;margin:20px 0}
+.wizard-hdr{background:var(--purple);padding:16px 20px;color:#fff}
+.wizard-hdr h3{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;margin-bottom:2px}
+.wizard-hdr p{font-size:12px;opacity:.8}
+.wizard-body{padding:20px}
+.wiz-step{display:none}
+.wiz-step.wvis{display:block}
+.wiz-q{font-weight:700;font-size:15px;color:var(--text);margin-bottom:16px;line-height:1.5}
+.wiz-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.wiz-opt{border:1.5px solid var(--border);border-radius:var(--r);padding:14px 16px;cursor:pointer;font-family:inherit;background:var(--white);text-align:left;transition:.2s}
+.wiz-opt:hover{border-color:var(--purple);background:var(--purple-l)}
+.wiz-opt.chosen{border-color:var(--purple);background:var(--purple-l)}
+.wiz-opt .wo-title{font-weight:600;font-size:13px;margin-bottom:3px;color:var(--text)}
+.wiz-opt .wo-sub{font-size:11px;color:var(--text2)}
+.wiz-result{border-radius:var(--r);padding:16px;font-size:13px}
+.wiz-result.r-yes{background:var(--green-l);border:1px solid #86EFAC;color:var(--green-d)}
+.wiz-result.r-no{background:var(--coral-l);border:1px solid #FCA5A5;color:#7F1D1D}
+.wiz-result.r-maybe{background:var(--sun-l);border:1px solid #FCD34D;color:var(--sun-d)}
+.wiz-result h4{font-size:15px;font-weight:700;margin-bottom:8px}
+.wiz-result ul{padding-left:16px}
+.wiz-result li{margin-bottom:4px;font-size:12px}
+.wiz-nav{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.wiz-btn{padding:8px 18px;border-radius:20px;border:none;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;transition:.2s}
+.wiz-btn.back{background:var(--slate-l);color:var(--text2)}
+.wiz-btn.next{background:var(--purple);color:#fff}
+.wiz-btn.reset{background:var(--sky-l);color:var(--sky-m)}
+.wiz-progress{display:flex;gap:4px;margin-bottom:16px}
+.wiz-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:.3s}
+.wiz-dot.active{background:var(--purple)}
+.wiz-dot.done-dot{background:var(--purple);opacity:.4}
+
+/* LEGEND */
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)}
+.leg-dot{width:10px;height:10px;border-radius:3px}
+
+/* COMPARE TABLE */
+.ctable{width:100%;border-collapse:collapse;background:var(--white);border-radius:var(--rl);overflow:hidden;box-shadow:var(--sh);margin-bottom:20px}
+.ctable th{padding:12px 14px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:var(--sky);color:#fff;text-align:left}
+.ctable td{padding:10px 14px;font-size:12px;border-bottom:1px solid var(--border);vertical-align:top}
+.ctable tr:last-child td{border-bottom:none}
+.ctable tr:nth-child(even) td{background:var(--slate-l)}
+
+@media(max-width:640px){
+  .prof-row{grid-template-columns:1fr}
+  .doc-grid{grid-template-columns:1fr}
+  .wiz-opts{grid-template-columns:1fr}
+  .wrap{padding:16px 14px 50px}
+  .hdr{padding:24px 16px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-badge">Journey Detail v2</div>
+  <h1>Solar<span>One</span> — Journey</h1>
+  <p class="hdr-sub">เลือกประเภทผู้ใช้ → ดู Journey พร้อมเอกสารแต่ละขั้น + Wizard ช่วยตัดสินใจเรื่อง TOU Meter</p>
+</div>
+
+<!-- TOPNAV -->
+<nav class="topnav">
+  <button class="tnb on" onclick="showSec('journey')">🗺 Journey + เอกสาร</button>
+  <button class="tnb" onclick="showSec('tou-wizard')">⚡ ควรเปลี่ยน TOU ไหม?</button>
+  <button class="tnb" onclick="showSec('doc-master')">📁 Master Checklist</button>
+  <button class="tnb" onclick="showSec('compare')">⚖️ เปรียบเทียบ 2 เส้นทาง</button>
+</nav>
+
+<div class="wrap">
+
+<!-- ============================================================ -->
+<!-- SECTION 1: JOURNEY -->
+<!-- ============================================================ -->
+<section id="journey" class="sec on">
+  <div class="sec-title">Journey Map พร้อมเอกสารแต่ละขั้น</div>
+  <p class="sec-sub">เลือกประเภทของท่านก่อน จากนั้นจะเห็น Journey ที่เหมาะสม พร้อมรายการเอกสารที่ต้องเตรียมในแต่ละขั้นตอน</p>
+
+  <!-- PROFILE SELECTOR -->
+  <div class="prof-row">
+    <button class="prof-btn" id="btn-house" onclick="selectProfile('house')">
+      <div class="prof-emoji">🏠</div>
+      <div class="prof-name">บ้านอยู่อาศัย</div>
+      <div class="prof-desc">ค่าไฟ 1,500–5,000 บ./เดือน<br>ต้องการลดค่าไฟ / ขายไฟ</div>
+    </button>
+    <button class="prof-btn" id="btn-biz" onclick="selectProfile('biz')">
+      <div class="prof-emoji">🏢</div>
+      <div class="prof-name">SME / อาคารพาณิชย์</div>
+      <div class="prof-desc">ค่าไฟ 10,000–100,000 บ./เดือน<br>ต้องการลดต้นทุนธุรกิจ</div>
+    </button>
+    <button class="prof-btn" id="btn-factory" onclick="selectProfile('factory')">
+      <div class="prof-emoji">🏭</div>
+      <div class="prof-name">โรงงาน / นิคม</div>
+      <div class="prof-desc">ค่าไฟ 100,000+ บ./เดือน<br>ระบบ 100–1,000 kW</div>
+    </button>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#FFF7ED;border:1px solid #FED7AA"></div> เตรียมตัว</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#EFF6FF;border:1px solid #BFDBFE"></div> ยื่นเอกสาร</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#F1F5F9;border:1px solid #CBD5E1"></div> รอผล</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#DCFCE7;border:1px solid #86EFAC"></div> ดำเนินการ</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--purple-l);border:1px solid #C4B5FD"></div> TOU Meter</div>
+    <div class="leg-item"><div class="leg-dot" style="background:var(--green-l);border:1px solid #86EFAC"></div> เสร็จสิ้น</div>
+    <div class="leg-item">📄 เอกสารบังคับ</div>
+    <div class="leg-item">📋 เอกสารเพิ่มเติม (บางกรณี)</div>
+  </div>
+
+  <div class="note-box info" style="margin-bottom:20px">
+    <span class="ni">💡</span>
+    <span>เอกสาร <strong>กรอบสีน้ำเงิน = บังคับทุกกรณี</strong> / <strong>กรอบสีเหลือง = อาจต้องใช้บางกรณี</strong> ตรวจสอบกับเจ้าหน้าที่ก่อนยื่นเสมอ เพราะอาจแตกต่างตามพื้นที่</span>
+  </div>
+
+  <!-- HOUSE JOURNEY -->
+  <div id="jbody-house" class="jbody">
+    <div class="card" style="border-left:4px solid var(--sun);margin-bottom:20px">
+      <strong style="color:var(--sun-d)">🏠 Profile: บ้านอยู่อาศัย</strong><br>
+      <span style="font-size:12px;color:var(--text2)">ผู้ใช้ไฟประเภทที่ 1 · ชื่อในสัญญา กฟ. ต้องตรงกับเจ้าของบ้าน · ระบบไม่เกิน 10 kWp (ขายไฟได้) หรือไม่เกิน 50 kWp (ใช้เอง)</span>
+    </div>
+
+    <!-- STEP 0 -->
+    <div class="step-block">
+      <div class="step-circle s-prep">🤔</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 0</span>
+          <span class="step-name">ประเมินตัวเอง — ก่อนตัดสินใจ</span>
+          <span class="pill pill-free">ฟรี · ไม่มีเอกสาร</span>
+        </div>
+        <div class="step-desc">ดูบิลค่าไฟย้อนหลัง 6 เดือน · ตรวจสอบหลังคา (ทิศ/ร่มเงา/น้ำหนัก) · เลือกว่าจะ "ขายไฟ" หรือ "ใช้เองอย่างเดียว" · ตัดสินใจเรื่อง TOU Meter (ใช้ Wizard ในแท็บ ⚡)</div>
+        <div class="doc-title">📊 สิ่งที่ต้องรวบรวม (ยังไม่ใช่เอกสาร)</div>
+        <div class="doc-grid">
+          <div class="doc-item">
+            <span class="doc-icon">📋</span>
+            <div class="doc-label"><strong>บิลค่าไฟ 3–6 เดือนล่าสุด</strong><span>เพื่อดู pattern การใช้ไฟ คำนวณขนาดระบบ</span></div>
+          </div>
+          <div class="doc-item">
+            <span class="doc-icon">📐</span>
+            <div class="doc-label"><strong>ขนาดและทิศหลังคา</strong><span>พื้นที่ว่างบนหลังคา · ทิศใต้/ตะวันออกเฉียงใต้ดีที่สุด</span></div>
+          </div>
+          <div class="doc-item">
+            <span class="doc-icon">💰</span>
+            <div class="doc-label"><strong>งบประมาณที่มี</strong><span>ซื้อเองหรือต้องการสินเชื่อ</span></div>
+          </div>
+          <div class="doc-item">
+            <span class="doc-icon">⚡</span>
+            <div class="doc-label"><strong>เลขมิเตอร์ + ประเภทไฟ</strong><span>1 เฟส หรือ 3 เฟส · อยู่ในเขต MEA หรือ PEA</span></div>
+          </div>
+        </div>
+        <div class="note-box info">
+          <span class="ni">💡</span>
+          <span>SolarOne จะช่วย pre-assess ฟรีผ่าน App · กรอกข้อมูลพื้นฐาน 5 นาที → ได้รายงาน ROI เบื้องต้นทันที</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step-block">
+      <div class="step-circle s-doc">📄</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 1</span>
+          <span class="step-name">ยื่นคำขอ + ตรวจสอบ Grid Capacity (MEA/PEA)</span>
+          <span class="pill pill-time">7–10 วันทำการ</span>
+          <span class="pill pill-free">ฟรี</span>
+        </div>
+        <div class="step-desc">ยื่นออนไลน์ผ่าน <a href="https://myenergy.mea.or.th" target="_blank">myenergy.mea.or.th (MEA)</a>  หรือ <a href="https://ppim.pea.co.th" target="_blank">ppim.pea.co.th (PEA)</a> · กฟ. จะตรวจสอบว่า Transformer ในพื้นที่รองรับได้หรือไม่ · ขั้นตอนนี้ต้องทำ <strong>ก่อน</strong> ติดตั้งจริง (กรณีขายไฟ)</div>
+        <div class="doc-title">📄 เอกสารที่ต้องอัปโหลด</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">🪪</span>
+            <div class="doc-label"><strong>สำเนาบัตรประชาชน</strong><span>เจ้าของสัญญา กฟ. · เซ็นรับรอง "สำเนาถูกต้อง" ทุกหน้า</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📑</span>
+            <div class="doc-label"><strong>บิลค่าไฟฟ้า</strong><span>ฉบับล่าสุด ไม่เกิน 3 เดือน · แสดงชื่อ ที่อยู่ เลข CA ชัดเจน</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📊</span>
+            <div class="doc-label"><strong>Spec Sheet แผงโซลาร์</strong><span>Brand, model, กำลังวัตต์ พร้อมระบุจำนวนแผงที่จะติดตั้ง</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">🔌</span>
+            <div class="doc-label"><strong>Spec Sheet Inverter</strong><span>ต้องอยู่ในรายชื่อที่ กฟน./กฟภ. รับรองแล้วเท่านั้น</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📸</span>
+            <div class="doc-label"><strong>รูปถ่ายหน้าบ้าน</strong><span>เห็นเลขที่บ้าน + หลังคาชัดเจน ถ่ายไม่เกิน 1 เดือน</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">🗺</span>
+            <div class="doc-label"><strong>แผนที่ที่ตั้งบ้าน</strong><span>Google Maps screenshot พร้อม Pin ที่ตั้งชัดเจน</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">📝</span>
+            <div class="doc-label"><strong>หนังสือมอบอำนาจ</strong><span>กรณีบริษัทยื่นแทน · ติดอากรแสตมป์ 30 บาท · เซ็นพยาน 2 คน</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">🪪</span>
+            <div class="doc-label"><strong>สำเนาบัตรผู้รับมอบอำนาจ</strong><span>กรณีมอบอำนาจให้บริษัท เซ็นรับรองถูกต้อง</span></div>
+          </div>
+        </div>
+        <div class="note-box warn">
+          <span class="ni">⚠️</span>
+          <span><strong>ชื่อในบัตรต้องตรงกับชื่อในสัญญา กฟ. ทุกตัวอักษร</strong> ถ้าไม่ตรง ต้องแก้ไขข้อมูลที่ กฟ. ก่อนยื่น</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 (เฉพาะขายไฟ) -->
+    <div class="step-block">
+      <div class="step-circle s-doc">🏛</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 2</span>
+          <span class="step-name">ขออนุญาตก่อสร้าง/ดัดแปลงอาคาร (อบต./เทศบาล)</span>
+          <span class="pill pill-time">7–30 วัน</span>
+          <span class="pill pill-warn">⚠ บางพื้นที่บังคับ</span>
+        </div>
+        <div class="step-desc">ยื่นที่สำนักงาน อบต./เทศบาล/สำนักงานเขต ในพื้นที่ · <strong>กรณียกเว้น:</strong> ถ้าพื้นที่ติดตั้ง &lt;160 ตร.ม. และน้ำหนักรวม &lt;20 kg/ตร.ม. มักยกเว้นไม่ต้องยื่น (ตรวจสอบกับพื้นที่อีกครั้ง)</div>
+        <div class="doc-title">📄 เอกสารที่ต้องยื่น</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📋</span>
+            <div class="doc-label"><strong>แบบคำขอ ข.1</strong><span>แบบฟอร์มขออนุญาตก่อสร้าง/ดัดแปลงอาคาร รับที่ อบต. หรือดาวน์โหลด</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📐</span>
+            <div class="doc-label"><strong>แบบแปลนแสดงผัง + โครงสร้างหลังคา</strong><span>แสดงตำแหน่งแผง, โครงสร้างรองรับ (Mounting), น้ำหนัก</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">🔢</span>
+            <div class="doc-label"><strong>รายการคำนวณโครงสร้าง</strong><span>คำนวณแรงลม น้ำหนักบรรทุก ความสามารถรับน้ำหนักหลังคา</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📝</span>
+            <div class="doc-label"><strong>ใบรับรองวิศวกร (โยธา)</strong><span>วิศวกรโยธา ระดับ สมาชิกหรือ สามัญ พร้อมเลขใบ กว. · เซ็นรับรองแบบ</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📋</span>
+            <div class="doc-label"><strong>แบบฟอร์มสำรวจอาคาร</strong><span>ข้อมูลประเภทหลังคา วัสดุ อายุอาคาร สภาพโครงสร้าง</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">🪪</span>
+            <div class="doc-label"><strong>สำเนาบัตรประชาชนเจ้าของบ้าน</strong><span>พร้อมเซ็นรับรองสำเนาถูกต้อง</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">📜</span>
+            <div class="doc-label"><strong>สำเนาโฉนดที่ดิน / น.ส.3</strong><span>บางพื้นที่ต้องการ · เซ็นรับรองสำเนา</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">🏗</span>
+            <div class="doc-label"><strong>ใบอนุญาตก่อสร้างเดิม</strong><span>บางพื้นที่ขอดูใบอนุญาตก่อสร้างอาคารเดิม</span></div>
+          </div>
+        </div>
+        <div class="note-box warn">
+          <span class="ni">⚠️</span>
+          <span>พื้นที่ &gt;160 ตร.ม. หรือน้ำหนักรวม &gt;20 kg/ตร.ม. ต้องยื่นขอใบอนุญาตดัดแปลงอาคาร <strong>อ.1</strong> ซึ่งมีขั้นตอนเพิ่มเติม</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-block">
+      <div class="step-circle s-wait">⏳</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 3</span>
+          <span class="step-name">รอผลพิจารณา + รับอนุมัติ + เซ็นสัญญา PPA (กรณีขายไฟ)</span>
+          <span class="pill pill-time">7–45 วัน</span>
+          <span class="pill pill-cost">ค่าเชื่อมต่อ ~2,000 ฿</span>
+        </div>
+        <div class="step-desc">กฟ. แจ้งผลทาง Email · ถ้าผ่าน: นัดยื่นเอกสารตัวจริงและเซ็นสัญญาที่สำนักงาน กฟ. เขตพื้นที่ · PEA ประกาศผล 2 ครั้ง/เดือน (วันจันทร์ที่ 2 และ 4)</div>
+        <div class="doc-title">📄 เอกสารที่ต้องนำไปที่สำนักงาน กฟ.</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">🪪</span>
+            <div class="doc-label"><strong>บัตรประชาชนตัวจริง</strong><span>นำตัวจริงไปแสดง พร้อมสำเนา 1 ชุด เซ็นรับรอง</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📄</span>
+            <div class="doc-label"><strong>แบบคำขอขายไฟฟ้า (ต้นฉบับ)</strong><span>พร้อมลายเซ็นผู้ขอทุกหน้า</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">🏦</span>
+            <div class="doc-label"><strong>แบบหักบัญชีเงินฝาก</strong><span>กรอกเลขบัญชีธนาคารสำหรับรับเงินค่าขายไฟ</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📧</span>
+            <div class="doc-label"><strong>หนังสือแจ้งอีเมลรับใบแจ้งค่าไฟ</strong><span>ระบุอีเมลที่ต้องการรับใบแจ้งหนี้ค่าไฟฟ้า</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">💳</span>
+            <div class="doc-label"><strong>ชำระค่าเชื่อมต่อระบบ</strong><span>~2,000 บาท (ไม่รวม VAT) ณ สำนักงาน</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">📝</span>
+            <div class="doc-label"><strong>หนังสือมอบอำนาจ (ถ้าบริษัทไปแทน)</strong><span>ตัวจริงพร้อมอากรแสตมป์ 30 บาท ขีดคร่อม</span></div>
+          </div>
+        </div>
+        <div class="note-box warn">
+          <span class="ni">⚠️</span>
+          <span>ต้องยื่นเอกสารตัวจริงภายใน <strong>30 วัน</strong> นับจากวันประกาศรายชื่อผ่าน หากพ้นกำหนดถือว่าคำขอยกเลิก</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step-block">
+      <div class="step-circle s-action">🔧</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 4</span>
+          <span class="step-name">ติดตั้งระบบ Solar โดยช่างและวิศวกร</span>
+          <span class="pill pill-time">1–3 วัน</span>
+        </div>
+        <div class="step-desc">บริษัทติดตั้งแผง Mounting Inverter ตู้ไฟ เดินสายไฟ · วิศวกรไฟฟ้าควบคุมงาน · ถ่ายรูปทุกขั้นตอนเพื่อใช้ยื่น กฟ. ในขั้นถัดไป</div>
+        <div class="doc-title">📄 เอกสารที่บริษัทต้องเตรียมให้ครบ (ใช้ขั้นถัดไป)</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📐</span>
+            <div class="doc-label"><strong>Single Line Diagram (SLD) ฉบับสมบูรณ์</strong><span>วิศวกรไฟฟ้าเซ็น + ประทับตราวิชาชีพ + สำเนาใบ กว. แนบ</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📸</span>
+            <div class="doc-label"><strong>รูปถ่ายหลังติดตั้งครบทุกแผง</strong><span>เห็นแผงครบ + Inverter + ตู้ไฟ + สาย + มิเตอร์เดิม</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📋</span>
+            <div class="doc-label"><strong>รายการอุปกรณ์ที่ติดตั้งจริง</strong><span>Brand/Model ครบ พร้อม Serial Number ของ Inverter</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">✅</span>
+            <div class="doc-label"><strong>ใบรับรองการติดตั้ง (วิศวกร)</strong><span>วิศวกรไฟฟ้าเซ็นรับรองว่าติดตั้งถูกต้องตามมาตรฐาน วสท.</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">🛡</span>
+            <div class="doc-label"><strong>ใบรับประกันอุปกรณ์</strong><span>ใบรับประกันแผง (10–25 ปี) และ Inverter (5–10 ปี)</span></div>
+          </div>
+        </div>
+        <div class="note-box ok">
+          <span class="ni">✅</span>
+          <span>SolarOne จะ Generate checklist รายการถ่ายรูปให้บริษัทตาม spec ที่ กฟ. กำหนด ลดโอกาสตรวจไม่ผ่าน</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5 — TOU DECISION -->
+    <div class="step-block">
+      <div class="step-circle s-tou">⚡</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 5</span>
+          <span class="step-name">ตัดสินใจเรื่อง TOU Meter — เปลี่ยนหรือไม่?</span>
+          <span class="pill pill-warn">⚡ ตัดสินใจก่อน กฟ. มาตรวจ</span>
+        </div>
+        <div class="step-desc">กฟ. จะเปลี่ยนมิเตอร์ให้อัตโนมัติเมื่อ COD · ต้องแจ้งความต้องการล่วงหน้าว่าต้องการ <strong>TOU Meter</strong> หรือ <strong>Smart Meter แบบปกติ</strong> · ดูคำแนะนำได้ในแท็บ ⚡</div>
+        <div class="doc-title">📄 เอกสาร/ค่าใช้จ่ายมิเตอร์</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📋</span>
+            <div class="doc-label"><strong>แบบฟอร์มขอเปลี่ยนประเภทมิเตอร์</strong><span>ระบุว่าต้องการ TOU หรือมาตรฐาน ยื่นพร้อมการขอ COD</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">💳</span>
+            <div class="doc-label"><strong>ค่าเปลี่ยน Smart Meter / TOU Meter</strong><span>~8,500 + VAT = 9,095 บาท (สำหรับระบบ Solar) · MEA TOU แรงต่ำ ~6,640 บาท</span></div>
+          </div>
+        </div>
+        <div class="note-box info">
+          <span class="ni">💡</span>
+          <span>ถ้า <strong>ไม่ต้องการ TOU</strong> ยังคงได้ Smart Meter แบบ 2 ทิศทาง เพื่อวัดไฟที่ขายคืน แต่คิดค่าไฟในอัตราเดิม · เปลี่ยนใจภายหลังได้ แต่ต้องรอครบ 1 ปีก่อน</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step-block">
+      <div class="step-circle s-action">🔍</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 6</span>
+          <span class="step-name">กฟ. ส่งช่างมาตรวจสอบงานติดตั้ง</span>
+          <span class="pill pill-time">นัดภายใน 2–4 สัปดาห์</span>
+        </div>
+        <div class="step-desc">เจ้าหน้าที่ กฟ. มาตรวจสายไฟภายใน · ตรวจ Inverter · ตรวจ Anti-islanding · ตรวจ Rapid Shutdown (ถ้า &gt;200 kVA) · ถ้าผ่าน: เปลี่ยนมิเตอร์ทันที</div>
+        <div class="doc-title">📄 เตรียมไว้ให้ช่าง กฟ. ตรวจ</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📐</span>
+            <div class="doc-label"><strong>Single Line Diagram ตัวจริง</strong><span>พิมพ์ A4 หรือ A3 วางไว้ในตู้ไฟ</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📋</span>
+            <div class="doc-label"><strong>Spec Sheet Inverter ตัวจริง</strong><span>แสดงให้ช่าง กฟ. เห็น model ตรงกับที่ยื่นไว้</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">🔧</span>
+            <div class="doc-label"><strong>ทดสอบระบบให้พร้อม</strong><span>Inverter ต้องเปิดปกติ · ไฟต้องผลิตได้จริง</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">🪪</span>
+            <div class="doc-label"><strong>บัตรประชาชนเจ้าของบ้าน</strong><span>นำมาแสดง หรือมอบอำนาจให้บริษัทอยู่ด้วย</span></div>
+          </div>
+        </div>
+        <div class="note-box warn">
+          <span class="ni">⚠️</span>
+          <span>เจ้าหน้าที่แต่ละคนอาจตีความมาตรฐาน วสท. ต่างกัน · SolarOne จะส่ง Pre-inspection Checklist ให้บริษัทตรวจก่อน เพื่อลดโอกาสไม่ผ่าน</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 7 -->
+    <div class="step-block">
+      <div class="step-circle s-done">✅</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 7</span>
+          <span class="step-name">COD — เริ่มใช้งาน + Monitoring</span>
+          <span class="pill pill-free">เสร็จสิ้น 🎉</span>
+        </div>
+        <div class="step-desc">กฟ. ติดมิเตอร์ใหม่ กำหนด SCOD (วันเริ่มขายไฟ) · ระบบพร้อมใช้งาน · ยอดขายไฟหักจากบิลค่าไฟทุกเดือน · ถ้าขายได้มากกว่าที่ใช้ โอนเงินเข้าบัญชีที่แจ้งไว้</div>
+        <div class="doc-title">📄 เก็บสำเนาเอกสารทุกฉบับไว้เอง</div>
+        <div class="doc-grid">
+          <div class="doc-item ok">
+            <span class="doc-icon">📄</span>
+            <div class="doc-label"><strong>สัญญาซื้อขายไฟ PPA</strong><span>สำเนาสัญญา 10 ปี เก็บไว้ตลอดอายุสัญญา</span></div>
+          </div>
+          <div class="doc-item ok">
+            <span class="doc-icon">🧾</span>
+            <div class="doc-label"><strong>ใบเสร็จค่าเชื่อมต่อ + ค่ามิเตอร์</strong><span>เก็บไว้สำหรับยื่นลดหย่อนภาษี</span></div>
+          </div>
+          <div class="doc-item ok">
+            <span class="doc-icon">📑</span>
+            <div class="doc-label"><strong>ใบเสร็จค่าติดตั้ง Solar</strong><span>ใช้ยื่นลดหย่อนภาษีเงินได้บุคคลธรรมดา สูงสุด 200,000 บาท</span></div>
+          </div>
+          <div class="doc-item ok">
+            <span class="doc-icon">🛡</span>
+            <div class="doc-label"><strong>ใบรับประกันทั้งหมด</strong><span>แผง / Inverter / งานติดตั้ง เก็บรวมไว้ที่เดียว</span></div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div><!-- end house -->
+
+  <!-- BIZ JOURNEY -->
+  <div id="jbody-biz" class="jbody">
+    <div class="card" style="border-left:4px solid var(--sky-m);margin-bottom:20px">
+      <strong style="color:var(--sky)">🏢 Profile: SME / อาคารพาณิชย์</strong><br>
+      <span style="font-size:12px;color:var(--text2)">ผู้ใช้ไฟประเภทที่ 2–4 · นิติบุคคลหรือบุคคลธรรมดา · ระบบ 10–250 kWp · อาจเช่าอาคาร (ต้องได้ Landlord อนุมัติ)</span>
+    </div>
+
+    <div class="step-block">
+      <div class="step-circle s-prep">📊</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 0</span>
+          <span class="step-name">Energy Audit + ROI Analysis</span>
+          <span class="pill pill-time">1–2 สัปดาห์</span>
+          <span class="pill pill-free">SolarOne ช่วยได้</span>
+        </div>
+        <div class="step-desc">วิเคราะห์ Load Profile รายชั่วโมง · คำนวณขนาด Solar ที่เหมาะสม · เปรียบเทียบ ROI ซื้อเอง vs Leasing · ตรวจสอบสัญญาเช่าอาคารว่าอนุญาตติด Solar หรือต้องขอ Landlord</div>
+        <div class="doc-title">📄 ข้อมูลที่ต้องรวบรวม</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📊</span>
+            <div class="doc-label"><strong>บิลค่าไฟ 12 เดือนล่าสุด</strong><span>ต้องการ Demand (kVA) + Unit (kWh) รายเดือน</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📋</span>
+            <div class="doc-label"><strong>แบบแปลนอาคาร / รูปถ่ายหลังคา</strong><span>ขนาด ทิศ สภาพหลังคา สิ่งบดบัง (ถังน้ำ/แอร์)</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">📜</span>
+            <div class="doc-label"><strong>สัญญาเช่าอาคาร (ถ้าเช่า)</strong><span>ตรวจสอบว่าอนุญาตดัดแปลงหลังคา + เซ็นอนุมัติ Landlord</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">🏛</span>
+            <div class="doc-label"><strong>ใบอนุญาตประกอบกิจการ</strong><span>บางกรณี กฟ. ขอตรวจสอบประเภทธุรกิจ</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-circle s-doc">📄</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 1</span>
+          <span class="step-name">ยื่นขอเชื่อมต่อ กฟน./กฟภ. + ขอ กกพ.</span>
+          <span class="pill pill-time">7–30 วัน</span>
+        </div>
+        <div class="step-desc">เอกสารคล้ายบ้านอยู่อาศัย แต่เพิ่มเอกสารนิติบุคคล · ถ้าขนาด &gt;200 kVA ต้องยื่น พค.1 กับสำนักงานพลังงาน (พพ.) ด้วย</div>
+        <div class="doc-title">📄 เอกสารเพิ่มเติมจากบ้านอยู่อาศัย</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📜</span>
+            <div class="doc-label"><strong>หนังสือรับรองบริษัท</strong><span>ออกโดยกรมพัฒนาธุรกิจการค้า ไม่เกิน 3 เดือน</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">🪪</span>
+            <div class="doc-label"><strong>บัตรประชาชนผู้มีอำนาจลงนาม</strong><span>ตามหนังสือรับรองบริษัท พร้อมเซ็นรับรองสำเนา</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📋</span>
+            <div class="doc-label"><strong>หนังสือมอบอำนาจ (นิติบุคคล)</strong><span>พร้อมตราประทับบริษัท + เซ็นผู้มีอำนาจ + อากรแสตมป์</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">⚡</span>
+            <div class="doc-label"><strong>แบบฟอร์ม พค.1 (ถ้า &gt;200 kVA)</strong><span>แจ้งผลิตพลังงานควบคุม ยื่นที่ พพ. เขต</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-circle s-doc">🏛</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 2</span>
+          <span class="step-name">ขออนุญาตก่อสร้าง + เอกสารนิติบุคคล (อบต.)</span>
+          <span class="pill pill-time">14–45 วัน</span>
+        </div>
+        <div class="step-desc">เหมือนบ้านอยู่อาศัย แต่ใช้นามนิติบุคคล · ถ้าอาคารมีระบบ Building Management ต้องประสานก่อนเพื่อกำหนดวันหยุดระบบไฟสำหรับติดตั้ง</div>
+        <div class="doc-title">📄 เอกสารเพิ่มเติมสำหรับนิติบุคคล</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📜</span>
+            <div class="doc-label"><strong>สำเนาหนังสือรับรองบริษัท</strong><span>เซ็นรับรองสำเนาโดยผู้มีอำนาจ + ประทับตรา</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📜</span>
+            <div class="doc-label"><strong>สำเนา บอจ.3 (รายชื่อกรรมการ)</strong><span>ฉบับล่าสุด ไม่เกิน 6 เดือน</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">✍️</span>
+            <div class="doc-label"><strong>หนังสืออนุญาตจาก Landlord</strong><span>ถ้าเช่าอาคาร ต้องมีเซ็นอนุมัติให้ดัดแปลงหลังคา</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">🏗</span>
+            <div class="doc-label"><strong>รายงาน Structural Assessment</strong><span>วิศวกรโยธาประเมินความแข็งแรงอาคาร (ถ้าอาคารเก่า)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-circle s-action">🔧</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 3</span>
+          <span class="step-name">ติดตั้ง + ประสาน Building Management</span>
+          <span class="pill pill-time">3–14 วัน</span>
+        </div>
+        <div class="step-desc">ต้องนัดหมายล่วงหน้ากับ BM · กำหนดวันหยุดไฟบางส่วนสำหรับต่อสาย Main · วิศวกรไฟฟ้าควบคุมงานตลอด</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📐</span>
+            <div class="doc-label"><strong>SLD ฉบับสมบูรณ์ (วิศวกรเซ็น)</strong><span>รวม Anti-islanding + อุปกรณ์ป้องกัน</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📸</span>
+            <div class="doc-label"><strong>รูปถ่ายก่อน-ระหว่าง-หลังติดตั้ง</strong><span>ครบทุก area ที่ กฟ. กำหนด</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">🛡</span>
+            <div class="doc-label"><strong>ใบรับรอง มาตรฐาน วสท. 022013-22</strong><span>ถ้า Inverter &gt;200 kVA ต้องติด Rapid Shutdown ด้วย</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-circle s-tou">⚡</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 4</span>
+          <span class="step-name">TOU Meter + กฟ. ตรวจ + COD</span>
+          <span class="pill pill-cost">~9,095–7,350 ฿</span>
+        </div>
+        <div class="step-desc">SME ส่วนใหญ่ <strong>แนะนำให้เปลี่ยน TOU</strong> เพราะใช้ไฟหนักกลางวัน + Solar ผลิตช่วงพีคพอดี · ประหยัดได้ทวีคูณ · ปรึกษาด้วย Wizard ⚡</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📋</span>
+            <div class="doc-label"><strong>แจ้งความต้องการ TOU ล่วงหน้า</strong><span>ระบุในแบบฟอร์มขอ COD ว่าต้องการ TOU Meter</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">💳</span>
+            <div class="doc-label"><strong>ชำระค่ามิเตอร์ TOU</strong><span>MEA แรงต่ำ ~6,640 บาท · แรงสูง ~7,350 บาท</span></div>
+          </div>
+        </div>
+        <div class="note-box ok">
+          <span class="ni">✅</span>
+          <span>SME ที่ใช้ TOU + Solar ร่วมกัน สามารถประหยัดค่าไฟ 40–70% ในช่วงกลางวัน และย้าย Load หนักไปกลางคืน (Off-Peak 2.64 บาท/หน่วย)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-circle s-done">✅</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 5</span>
+          <span class="step-name">COD + ขอลดหย่อนภาษีนิติบุคคล + Monitoring</span>
+          <span class="pill pill-free">เสร็จสิ้น 🎉</span>
+        </div>
+        <div class="step-desc">เก็บใบกำกับภาษีทุกใบ · ค่าติดตั้งหักเป็นค่าใช้จ่ายทางธุรกิจ + ลดหย่อนภาษีนิติบุคคล 50% ของมูลค่าลงทุน · ติดตาม Monitoring ผ่าน SCADA</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">🧾</span>
+            <div class="doc-label"><strong>ใบกำกับภาษีค่าติดตั้งทั้งหมด</strong><span>รวมค่าแผง Inverter อุปกรณ์ และค่าติดตั้ง</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📄</span>
+            <div class="doc-label"><strong>สัญญาและเอกสาร COD ครบชุด</strong><span>เก็บไว้ตลอดอายุระบบ 20–25 ปี</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end biz -->
+
+  <!-- FACTORY JOURNEY -->
+  <div id="jbody-factory" class="jbody">
+    <div class="card" style="border-left:4px solid var(--green);margin-bottom:20px">
+      <strong style="color:var(--green-d)">🏭 Profile: โรงงาน / นิคมอุตสาหกรรม</strong><br>
+      <span style="font-size:12px;color:var(--text2)">ผู้ใช้ไฟประเภทที่ 3–4 (แรงสูง) · ระบบ 100 kW – 1 MW · มีหน่วยงานเพิ่มเติม: กรมโรงงาน / กนอ. / พพ.</span>
+    </div>
+
+    <div class="step-block">
+      <div class="step-circle s-prep">📊</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 0</span>
+          <span class="step-name">Energy Audit เชิงลึก + Feasibility Report</span>
+          <span class="pill pill-time">2–4 สัปดาห์</span>
+        </div>
+        <div class="step-desc">วิศวกรพลังงานสำรวจหน้างาน · วิเคราะห์ Demand/kWh รายชั่วโมง 1 ปี · ออกแบบระบบ · ประเมินว่าต้องเชื่อมแรงต่ำหรือแรงสูง · คำนวณ Payback Period และ NPV</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📊</span>
+            <div class="doc-label"><strong>บิลค่าไฟ 12 เดือน (รายชั่วโมงถ้ามี)</strong><span>รวม Demand Charge และ Power Factor</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">🗺</span>
+            <div class="doc-label"><strong>แผนผังโรงงาน (As-built Drawing)</strong><span>แสดงตำแหน่งหลังคา เสาไฟ หม้อแปลง MDB</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">⚡</span>
+            <div class="doc-label"><strong>Single Line Diagram ระบบไฟฟ้าเดิม</strong><span>ขนาดหม้อแปลง สายเมน แผง MDB ที่ใช้งานอยู่</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">🏗</span>
+            <div class="doc-label"><strong>รายงานโครงสร้างหลังคา</strong><span>Load capacity ของหลังคาแต่ละส่วน</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-circle s-doc">📄</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 1</span>
+          <span class="step-name">ยื่นเอกสารทุกหน่วยงานพร้อมกัน (ขนานกัน)</span>
+          <span class="pill pill-time">30–90 วัน</span>
+          <span class="pill pill-warn">⚠ หลายหน่วยงาน</span>
+        </div>
+        <div class="step-desc">ยื่นพร้อมกันหลายช่องทาง เพื่อลดเวลา: กฟน./กฟภ. + กกพ. + อบต. + พพ. (ถ้า &gt;200 kVA) · ถ้าอยู่ในนิคม ต้องได้รับ OK จาก กนอ. ก่อน</div>
+        <div class="doc-title">📄 เอกสารแต่ละหน่วยงาน</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">⚡</span>
+            <div class="doc-label"><strong>กฟน./กฟภ.: ชุดเอกสารเชื่อมต่อ</strong><span>SLD + Spec Sheet + หนังสือรับรองบริษัท + รูปหลังคา + รายชื่อ Inverter</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">🏛</span>
+            <div class="doc-label"><strong>กกพ.: จดแจ้งยกเว้นใบอนุญาต</strong><span>ยื่นออนไลน์ cleanenergyforlife.net · ถ้า &lt;200 kW ยื่น กกพ. เขต</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">🏗</span>
+            <div class="doc-label"><strong>อบต./เทศบาล: ขออนุญาตก่อสร้าง</strong><span>แบบ ข.1 + แบบแปลน + วิศวกรโยธาเซ็น + รายการคำนวณ</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">⚡</span>
+            <div class="doc-label"><strong>พพ.: ยื่น พค.1 (ถ้า &gt;200 kVA)</strong><span>แบบฟอร์มแจ้งผลิตพลังงานควบคุม + วิศวกรเซ็น</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">🏭</span>
+            <div class="doc-label"><strong>กรมโรงงาน: รง.4 (ถ้า &gt;1 MW)</strong><span>ใบอนุญาตประกอบกิจการโรงงาน — ขั้นตอนซับซ้อน ใช้เวลานาน</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">🏢</span>
+            <div class="doc-label"><strong>กนอ. (ถ้าอยู่ในนิคม)</strong><span>แจ้งให้ กนอ. รับทราบ + ขอ Clearance ก่อนยื่น กฟ.</span></div>
+          </div>
+        </div>
+        <div class="note-box warn">
+          <span class="ni">⚠️</span>
+          <span>โรงงานที่จะติด &gt;1 MW ต้องขอ รง.4 ก่อน ซึ่งใช้เวลา 3–12 เดือน · ส่วนใหญ่จึง Phase การติดตั้งเป็น &lt;1 MW ก่อน แล้วค่อย Phase 2</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-circle s-action">🏗</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 2</span>
+          <span class="step-name">ติดตั้ง EPC + มาตรฐาน วสท. 022013-22</span>
+          <span class="pill pill-time">2–8 สัปดาห์</span>
+        </div>
+        <div class="step-desc">EPC Contractor ขนาดใหญ่ · วิศวกรไฟฟ้าและโยธาควบคุมงาน · ต้องติด Rapid Shutdown ถ้า &gt;200 kVA · ต้องมี AFCI ตาม มาตรฐาน วสท. · ถ้าเชื่อมแรงสูงต้องติดหม้อแปลงใหม่</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📐</span>
+            <div class="doc-label"><strong>SLD รายละเอียดสูง (วิศวกรเซ็น)</strong><span>รวม Protection System, Anti-islanding, Rapid Shutdown</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">✅</span>
+            <div class="doc-label"><strong>ใบรับรองมาตรฐาน วสท. 022013-22</strong><span>ผู้ตรวจสอบที่ผ่านการรับรองเซ็น · ต้องส่ง พพ. ด้วย</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📸</span>
+            <div class="doc-label"><strong>รูปถ่าย As-built ทุกจุด</strong><span>แผง, Mounting, Inverter, Panel, Earthing, Conduit</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">🔌</span>
+            <div class="doc-label"><strong>Test Report ระบบ Anti-islanding</strong><span>บันทึกผลการทดสอบ ก่อน กฟ. มาตรวจ</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-circle s-tou">⚡</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 3</span>
+          <span class="step-name">TOU Meter + SCADA + กฟ. ตรวจ + COD</span>
+          <span class="pill pill-time">2–6 สัปดาห์</span>
+        </div>
+        <div class="step-desc">โรงงาน <strong>แนะนำ TOU Meter เสมอ</strong> เพราะ Demand ช่วงกลางวันสูง ประหยัดได้มาก · ต้องติดตั้ง SCADA/Energy Management System สำหรับ Real-time Monitoring และ ESG Reporting</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📊</span>
+            <div class="doc-label"><strong>แบบฟอร์มขอ TOU Meter แรงสูง</strong><span>MEA แรงสูง ~7,350 บาท · PEA ตามขนาดมิเตอร์</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">📡</span>
+            <div class="doc-label"><strong>แผน SCADA / Monitoring ระบบ</strong><span>แสดงให้ กฟ. เห็นว่ามีระบบ Monitoring ที่เหมาะสม</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">✅</span>
+            <div class="doc-label"><strong>ใบรับรอง พค.2 (ถ้า &gt;200 kVA)</strong><span>รับหลังจาก พพ. อนุมัติ · ต้องมีก่อน COD</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-block">
+      <div class="step-circle s-done">✅</div>
+      <div class="step-inner">
+        <div class="step-header">
+          <span class="step-num">ขั้นที่ 4</span>
+          <span class="step-name">COD + ESG Report + Carbon Credit</span>
+          <span class="pill pill-free">เสร็จสิ้น 🎉</span>
+        </div>
+        <div class="step-desc">ระบบพร้อมใช้งาน · ประหยัดค่าไฟ 30–60% · SCADA รายงาน Real-time · ออก Carbon Offset Certificate สำหรับ ESG Report ประจำปี · คืนทุน 6–7 ปี</div>
+        <div class="doc-grid">
+          <div class="doc-item must">
+            <span class="doc-icon">📋</span>
+            <div class="doc-label"><strong>รายงาน Energy Production รายเดือน</strong><span>สำหรับบัญชี ภาษี และ ESG Disclosure</span></div>
+          </div>
+          <div class="doc-item must">
+            <span class="doc-icon">🧾</span>
+            <div class="doc-label"><strong>ใบกำกับภาษีค่าติดตั้งทั้งหมด</strong><span>ลดหย่อนภาษีนิติบุคคล 50% ของมูลค่าลงทุน</span></div>
+          </div>
+          <div class="doc-item maybe">
+            <span class="doc-icon">🌱</span>
+            <div class="doc-label"><strong>ใบรับรอง REC / Carbon Credit</strong><span>ยื่นผ่าน TGO (องค์การบริหารจัดการก๊าซเรือนกระจก)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end factory -->
+
+  <div id="no-profile" style="text-align:center;padding:40px 20px;color:var(--text2)">
+    <div style="font-size:48px;margin-bottom:12px">☝️</div>
+    <div style="font-size:15px;font-weight:600">กรุณาเลือกประเภทผู้ใช้ด้านบนก่อน</div>
+    <div style="font-size:13px;margin-top:4px">จะแสดง Journey พร้อมรายการเอกสารที่เหมาะสมกับท่าน</div>
+  </div>
+
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: TOU WIZARD -->
+<!-- ============================================================ -->
+<section id="tou-wizard" class="sec">
+  <div class="sec-title">⚡ ควรเปลี่ยนเป็น TOU Meter ไหม?</div>
+  <p class="sec-sub">ตอบคำถาม 4 ข้อ รับคำแนะนำที่เหมาะกับ lifestyle ของท่านทันที</p>
+
+  <div class="wizard">
+    <div class="wizard-hdr">
+      <h3>⚡ TOU Decision Wizard</h3>
+      <p>ตอบตามความเป็นจริง — ไม่มีคำตอบที่ถูกหรือผิด</p>
+    </div>
+    <div class="wizard-body">
+      <div class="wiz-progress" id="wiz-prog">
+        <div class="wiz-dot active" id="wd0"></div>
+        <div class="wiz-dot" id="wd1"></div>
+        <div class="wiz-dot" id="wd2"></div>
+        <div class="wiz-dot" id="wd3"></div>
+        <div class="wiz-dot" id="wd4"></div>
+      </div>
+
+      <!-- Q0 -->
+      <div class="wiz-step wvis" id="wq0">
+        <div class="wiz-q">🏠 คุณเป็น...?</div>
+        <div class="wiz-opts">
+          <button class="wiz-opt" onclick="wiz(0,'house')">
+            <div class="wo-title">🏠 บ้านอยู่อาศัย</div>
+            <div class="wo-sub">ใช้ไฟในบ้าน ครัวเรือน</div>
+          </button>
+          <button class="wiz-opt" onclick="wiz(0,'biz')">
+            <div class="wo-title">🏢 SME / ธุรกิจ</div>
+            <div class="wo-sub">ร้านค้า ออฟฟิศ อาคารพาณิชย์</div>
+          </button>
+          <button class="wiz-opt" onclick="wiz(0,'factory')">
+            <div class="wo-title">🏭 โรงงาน / นิคม</div>
+            <div class="wo-sub">ค่าไฟ 100,000+ บาท/เดือน</div>
+          </button>
+          <button class="wiz-opt" onclick="wiz(0,'ev')">
+            <div class="wo-title">🚗 บ้าน + รถ EV</div>
+            <div class="wo-sub">มีรถไฟฟ้า ชาร์จที่บ้าน</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Q1 -->
+      <div class="wiz-step" id="wq1">
+        <div class="wiz-q">⏰ ช่วงเวลาที่คุณใช้ไฟมากที่สุดคือ...?</div>
+        <div class="wiz-opts">
+          <button class="wiz-opt" onclick="wiz(1,'day')">
+            <div class="wo-title">☀️ กลางวัน (9:00–22:00 น.)</div>
+            <div class="wo-sub">อยู่บ้าน WFH / ใช้แอร์ตอนกลางวัน</div>
+          </button>
+          <button class="wiz-opt" onclick="wiz(1,'night')">
+            <div class="wo-title">🌙 กลางคืน (22:00–09:00 น.)</div>
+            <div class="wo-sub">ออกไปทำงาน กลับบ้านเย็น</div>
+          </button>
+          <button class="wiz-opt" onclick="wiz(1,'both')">
+            <div class="wo-title">🔄 ตลอดวัน ใกล้เคียงกัน</div>
+            <div class="wo-sub">ใช้ไฟทั้งวันพอๆ กัน</div>
+          </button>
+          <button class="wiz-opt" onclick="wiz(1,'weekend')">
+            <div class="wo-title">📅 มากเฉพาะวันหยุด</div>
+            <div class="wo-sub">เสาร์-อาทิตย์ใช้เยอะกว่ามาก</div>
+          </button>
+        </div>
+        <div class="wiz-nav"><button class="wiz-btn back" onclick="wizBack(1)">← ย้อนกลับ</button></div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="wiz-step" id="wq2">
+        <div class="wiz-q">☀️ คุณกำลังจะติดตั้ง Solar Cell หรือติดแล้ว?</div>
+        <div class="wiz-opts">
+          <button class="wiz-opt" onclick="wiz(2,'yes-solar')">
+            <div class="wo-title">✅ ใช่ กำลังจะติด/ติดแล้ว</div>
+            <div class="wo-sub">ระบบ On-Grid เชื่อมต่อ กฟ.</div>
+          </button>
+          <button class="wiz-opt" onclick="wiz(2,'no-solar')">
+            <div class="wo-title">❌ ยังไม่มี Solar</div>
+            <div class="wo-sub">สนใจ TOU อย่างเดียวก่อน</div>
+          </button>
+        </div>
+        <div class="wiz-nav"><button class="wiz-btn back" onclick="wizBack(2)">← ย้อนกลับ</button></div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="wiz-step" id="wq3">
+        <div class="wiz-q">🔄 ปรับพฤติกรรมการใช้ไฟได้แค่ไหน?</div>
+        <div class="wiz-opts">
+          <button class="wiz-opt" onclick="wiz(3,'flex')">
+            <div class="wo-title">✅ ย้ายได้มาก</div>
+            <div class="wo-sub">ซักผ้า อบผ้า ล้างจาน ชาร์จ EV ย้ายไปกลางคืนได้</div>
+          </button>
+          <button class="wiz-opt" onclick="wiz(3,'some')">
+            <div class="wo-title">🔶 ย้ายได้บางส่วน</div>
+            <div class="wo-sub">บางอุปกรณ์ยืดหยุ่นได้ บางอย่างต้องใช้กลางวัน</div>
+          </button>
+          <button class="wiz-opt" onclick="wiz(3,'rigid')">
+            <div class="wo-title">❌ ย้ายไม่ได้เลย</div>
+            <div class="wo-sub">ต้องใช้ตามเวลาเดิม ไม่สามารถปรับได้</div>
+          </button>
+        </div>
+        <div class="wiz-nav"><button class="wiz-btn back" onclick="wizBack(3)">← ย้อนกลับ</button></div>
+      </div>
+
+      <!-- RESULT -->
+      <div class="wiz-step" id="wq4">
+        <div id="wiz-result-box"></div>
+        <div class="wiz-nav"><button class="wiz-btn reset" onclick="wizReset()">🔄 เริ่มใหม่</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOU INFO -->
+  <div class="card">
+    <div style="font-weight:700;font-size:15px;color:var(--sky);margin-bottom:14px">📊 เปรียบเทียบอัตราค่าไฟ (ปี 2568)</div>
+    <table class="ctable">
+      <tr>
+        <th>ช่วงเวลา</th>
+        <th>TOU Meter (บ./หน่วย)</th>
+        <th>มิเตอร์ธรรมดา (บ./หน่วย)</th>
+        <th>ผลต่าง</th>
+      </tr>
+      <tr>
+        <td>🔴 On-Peak (จ–ศ 09:00–22:00)</td>
+        <td style="color:#C2410C;font-weight:700">5.7982</td>
+        <td style="color:var(--text2)">~4.00–4.80*</td>
+        <td style="color:var(--coral)">แพงกว่า</td>
+      </tr>
+      <tr>
+        <td>🔵 Off-Peak (จ–ศ 22:00–09:00)</td>
+        <td style="color:#1D4ED8;font-weight:700">2.6369</td>
+        <td style="color:var(--text2)">~4.00–4.80*</td>
+        <td style="color:var(--green)">ถูกกว่า ~40%</td>
+      </tr>
+      <tr>
+        <td>🟢 Off-Peak (เสาร์–อาทิตย์ + วันหยุด ทั้งวัน)</td>
+        <td style="color:#1D4ED8;font-weight:700">2.6369</td>
+        <td style="color:var(--text2)">~4.00–4.80*</td>
+        <td style="color:var(--green)">ถูกกว่า ~40%</td>
+      </tr>
+      <tr>
+        <td colspan="4" style="font-size:11px;color:var(--text3)">*อัตราปกติขึ้นกับหน่วยที่ใช้ (อัตราก้าวหน้า) · ยังไม่รวม Ft และค่าบริการรายเดือน (TOU=38.22 บ. vs ปกติ=8.19 บ.)</td>
+      </tr>
+    </table>
+    <div class="note-box info" style="margin-top:8px">
+      <span class="ni">💡</span>
+      <span><strong>สูตรประมาณการง่าย:</strong> ถ้าใช้ไฟ Off-Peak &gt;60% ของทั้งหมด → TOU คุ้มค่า · ถ้ามี Solar ด้วย → TOU คุ้มค่าเกือบทุกกรณี (Solar ผลิตตรง On-Peak)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: MASTER CHECKLIST -->
+<!-- ============================================================ -->
+<section id="doc-master" class="sec">
+  <div class="sec-title">📁 Master Checklist เอกสารทั้งหมด</div>
+  <p class="sec-sub">รวมทุกเอกสารที่อาจต้องใช้ในกระบวนการ แยกตามหน่วยงาน</p>
+
+  <div class="card">
+    <div style="font-weight:700;font-size:14px;color:var(--sky);margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px">🏛 หมวด 1: เอกสารส่วนตัว / นิติบุคคล (ทุกกรณีบังคับ)</div>
+    <div class="doc-grid">
+      <div class="doc-item must"><span class="doc-icon">🪪</span><div class="doc-label"><strong>บัตรประชาชน (ตัวจริง + สำเนา)</strong><span>เซ็นรับรองทุกหน้า · ชื่อต้องตรงสัญญา กฟ.</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">📑</span><div class="doc-label"><strong>บิลค่าไฟฟ้าล่าสุด</strong><span>ไม่เกิน 3 เดือน · แสดงเลข CA และชื่อผู้ใช้ไฟ</span></div></div>
+      <div class="doc-item maybe"><span class="doc-icon">📝</span><div class="doc-label"><strong>หนังสือมอบอำนาจ</strong><span>อากรแสตมป์ 30 บาท ขีดคร่อม · พยาน 2 คนเซ็น</span></div></div>
+      <div class="doc-item maybe"><span class="doc-icon">📜</span><div class="doc-label"><strong>หนังสือรับรองบริษัท (นิติบุคคล)</strong><span>ออกไม่เกิน 3 เดือน · บอจ.3 รายชื่อกรรมการ</span></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-weight:700;font-size:14px;color:var(--sky);margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px">⚡ หมวด 2: เอกสารวิศวกรรมไฟฟ้า (ต้องมีวิศวกรเซ็น)</div>
+    <div class="doc-grid">
+      <div class="doc-item must"><span class="doc-icon">📐</span><div class="doc-label"><strong>Single Line Diagram (SLD)</strong><span>วิศวกรไฟฟ้า ระดับสามัญ/วุฒิ เซ็น + ตรา + สำเนาใบ กว.</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">📋</span><div class="doc-label"><strong>Spec Sheet แผงโซลาร์</strong><span>Brand/Model/Watt + แผ่นรับรองมาตรฐาน IEC/TUV</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">🔌</span><div class="doc-label"><strong>Spec Sheet Inverter</strong><span>ต้องอยู่ในรายชื่อที่ กฟน./กฟภ. รับรอง + Serial Number</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">✅</span><div class="doc-label"><strong>ใบรับรองการติดตั้ง (หลังติดตั้ง)</strong><span>วิศวกรไฟฟ้าเซ็นว่าติดตั้งถูกต้องตาม วสท. 022013-22</span></div></div>
+      <div class="doc-item maybe"><span class="doc-icon">🛡</span><div class="doc-label"><strong>รายงาน Anti-islanding Test</strong><span>ผลทดสอบระบบป้องกันไฟไหลย้อน ก่อน กฟ. มาตรวจ</span></div></div>
+      <div class="doc-item maybe"><span class="doc-icon">⚡</span><div class="doc-label"><strong>ใบรับรอง Rapid Shutdown (>200 kVA)</strong><span>ตาม มาตรฐาน วสท. 022013-22 บังคับตั้งแต่ ก.ค. 66</span></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-weight:700;font-size:14px;color:var(--sky);margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px">🏗 หมวด 3: เอกสารสถาปัตยกรรม/โครงสร้าง (สำหรับ อบต./เทศบาล)</div>
+    <div class="doc-grid">
+      <div class="doc-item must"><span class="doc-icon">📋</span><div class="doc-label"><strong>แบบคำขอ ข.1</strong><span>แบบฟอร์มขออนุญาตก่อสร้าง/ดัดแปลงอาคาร</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">📐</span><div class="doc-label"><strong>แบบแปลนหลังคา + โครงสร้างรองรับ</strong><span>ระบุตำแหน่งแผง Mounting น้ำหนักรวม</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">🔢</span><div class="doc-label"><strong>รายการคำนวณโครงสร้าง</strong><span>วิศวกรโยธา (สมาชิก/สามัญ) เซ็น + ใบ กว.</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">📋</span><div class="doc-label"><strong>แบบฟอร์มสำรวจอาคาร</strong><span>ประเภทหลังคา วัสดุ อายุ สภาพโครงสร้าง</span></div></div>
+      <div class="doc-item maybe"><span class="doc-icon">📜</span><div class="doc-label"><strong>สำเนาโฉนดที่ดิน</strong><span>บางพื้นที่บังคับ · เซ็นรับรองสำเนา</span></div></div>
+      <div class="doc-item maybe"><span class="doc-icon">📄</span><div class="doc-label"><strong>ใบอนุญาตก่อสร้างเดิม</strong><span>บางพื้นที่ขอดู · ถ้าหาไม่ได้ให้แจ้งเจ้าหน้าที่</span></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-weight:700;font-size:14px;color:var(--sky);margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px">💰 หมวด 4: เอกสารการเงิน + สัญญา</div>
+    <div class="doc-grid">
+      <div class="doc-item must"><span class="doc-icon">🏦</span><div class="doc-label"><strong>แบบหักบัญชีเงินฝากอัตโนมัติ</strong><span>สำหรับรับเงินค่าขายไฟ · ต้องเป็นบัญชีของเจ้าของสัญญา กฟ.</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">📧</span><div class="doc-label"><strong>หนังสือแจ้งอีเมลรับใบแจ้งหนี้</strong><span>ระบุ email ที่ต้องการรับบิลค่าไฟฟ้า</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">💳</span><div class="doc-label"><strong>ชำระค่าเชื่อมต่อ ~2,000 บาท</strong><span>จ่ายที่สำนักงาน กฟ. เก็บใบเสร็จไว้ยื่นภาษี</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">💳</span><div class="doc-label"><strong>ชำระค่า Smart/TOU Meter ~6,640–9,095 บาท</strong><span>จ่ายเมื่อ กฟ. แจ้ง ก่อน COD · เก็บใบเสร็จ</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">🧾</span><div class="doc-label"><strong>ใบกำกับภาษีค่าติดตั้ง Solar</strong><span>ใช้ยื่นลดหย่อนภาษีบุคคลธรรมดา สูงสุด 200,000 บาท</span></div></div>
+      <div class="doc-item maybe"><span class="doc-icon">📄</span><div class="doc-label"><strong>เอกสารสินเชื่อ Solar (ถ้าใช้)</strong><span>สัญญากู้ ตารางผ่อน · เก็บสำเนาไว้ครบ</span></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-weight:700;font-size:14px;color:var(--sky);margin-bottom:12px;border-bottom:1px solid var(--border);padding-bottom:8px">📸 หมวด 5: รูปถ่าย (สำคัญมาก — กฟ. บังคับ)</div>
+    <div class="doc-grid">
+      <div class="doc-item must"><span class="doc-icon">📸</span><div class="doc-label"><strong>รูปหน้าบ้าน + เลขที่บ้านชัดเจน</strong><span>ถ่ายไม่เกิน 1 เดือน</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">🏠</span><div class="doc-label"><strong>รูปหลังคาจากมุมสูง (ก่อนติดตั้ง)</strong><span>เห็นพื้นที่ทั้งหมด ทิศทาง สิ่งบดบัง</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">☀️</span><div class="doc-label"><strong>รูปแผงโซลาร์ครบทุกแผง (หลังติดตั้ง)</strong><span>เห็นหมายเลขซีเรียล Serial Number ทุกแผง</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">🔌</span><div class="doc-label"><strong>รูป Inverter + ป้ายชื่อรุ่น</strong><span>ชัดเจน อ่านได้ ตรงกับ Spec Sheet</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">⚡</span><div class="doc-label"><strong>รูปตู้ไฟ + สายไฟทั้งหมด</strong><span>เห็น Breaker ทุกตัว การเดินสายชัดเจน</span></div></div>
+      <div class="doc-item must"><span class="doc-icon">🗺</span><div class="doc-label"><strong>Screenshot Google Maps + Pin ที่ตั้ง</strong><span>แสดงที่อยู่ชัดเจน พร้อม Zoom level เหมาะสม</span></div></div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: COMPARE -->
+<!-- ============================================================ -->
+<section id="compare" class="sec">
+  <div class="sec-title">⚖️ เปรียบเทียบ: ขายไฟ vs ใช้เองอย่างเดียว</div>
+  <p class="sec-sub">ช่วยตัดสินใจว่าเส้นทางไหนเหมาะกับคุณ</p>
+
+  <table class="ctable">
+    <tr>
+      <th>หัวข้อ</th>
+      <th>☀️ ใช้เอง ไม่ขายไฟ</th>
+      <th>💰 Solar ภาคประชาชน (ขายไฟ)</th>
+    </tr>
+    <tr><td style="font-weight:600">คุณสมบัติผู้สมัคร</td><td>ผู้ใช้ไฟทุกประเภท</td><td>ผู้ใช้ไฟประเภทที่ 1 (บ้านอยู่อาศัย) เท่านั้น</td></tr>
+    <tr><td style="font-weight:600">ขนาดระบบ</td><td>ไม่จำกัด (ต้องขอ รง.4 ถ้า &gt;1 MW)</td><td>ไม่เกิน 10 kWp ต่อราย</td></tr>
+    <tr><td style="font-weight:600">ระยะเวลาดำเนินการ</td><td>~1–2 เดือน</td><td>~2–4 เดือน</td></tr>
+    <tr><td style="font-weight:600">จำนวนเอกสาร</td><td>น้อยกว่า</td><td>มากกว่า (มีสัญญา PPA เพิ่ม)</td></tr>
+    <tr><td style="font-weight:600">ค่าเชื่อมต่อ กฟ.</td><td>~9,095 บาท</td><td>~2,000 + 9,095 บาท</td></tr>
+    <tr><td style="font-weight:600">รายได้เพิ่ม</td><td>ไม่มี (ประหยัดค่าไฟอย่างเดียว)</td><td>2.20 บาท/หน่วย นาน 10 ปี</td></tr>
+    <tr><td style="font-weight:600">โควตา</td><td>ไม่มีโควตา (ยื่นได้เลย)</td><td>มีโควตารวม 90 MW ทั้งประเทศ</td></tr>
+    <tr><td style="font-weight:600">TOU Meter</td><td>ไม่บังคับ แต่แนะนำ</td><td>กฟ. เปลี่ยนให้อัตโนมัติเมื่อ COD</td></tr>
+    <tr><td style="font-weight:600">เหมาะกับใคร</td><td>ใช้ไฟเยอะกลางวัน / โรงงาน / SME / อาคาร</td><td>บ้านอยู่อาศัย ต้องการรายได้เสริมระยะยาว</td></tr>
+    <tr><td style="font-weight:600">ระยะคืนทุน</td><td>5–7 ปี (ไม่มีรายได้ขายไฟ)</td><td>7–10 ปี (มีรายได้ขายไฟเสริม)</td></tr>
+  </table>
+
+  <div class="note-box info">
+    <span class="ni">💡</span>
+    <span><strong>คำแนะนำ:</strong> บ้านที่ใช้ไฟกลางวันมาก → เส้นทาง "ใช้เองอย่างเดียว" คืนทุนเร็วกว่า · บ้านที่ใช้ไฟกลางคืนเป็นหลัก → Solar ภาคประชาชน (ขายไฟ) คุ้มค่ากว่า เพราะขายไฟช่วงกลางวันได้</span>
+  </div>
+</section>
+
+</div><!-- end wrap -->
+
+<script>
+// === SECTION NAV ===
+function showSec(id) {
+  document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
+  document.querySelectorAll('.tnb').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  event.currentTarget.classList.add('on');
+}
+
+// === PROFILE SELECTOR ===
+let currentProfile = null;
+function selectProfile(p) {
+  currentProfile = p;
+  ['house','biz','factory'].forEach(k=>{
+    document.getElementById('btn-'+k).className='prof-btn';
+    const jb = document.getElementById('jbody-'+k);
+    if(jb) jb.classList.remove('vis');
+  });
+  const btn = document.getElementById('btn-'+p);
+  btn.classList.add('sel-'+p);
+  const jb = document.getElementById('jbody-'+p);
+  if(jb) { jb.classList.add('vis'); }
+  document.getElementById('no-profile').style.display='none';
+}
+
+// === TOU WIZARD ===
+let wizAnswers = {};
+let wizStep = 0;
+
+function wiz(q, val) {
+  wizAnswers[q] = val;
+  document.querySelectorAll('.wiz-opt').forEach(o=>o.classList.remove('chosen'));
+  event.currentTarget.classList.add('chosen');
+  setTimeout(()=>{
+    if(q < 3) {
+      showWizStep(q+1);
+    } else {
+      showWizResult();
+    }
+  }, 300);
+}
+
+function showWizStep(n) {
+  wizStep = n;
+  document.querySelectorAll('.wiz-step').forEach(s=>s.classList.remove('wvis'));
+  document.getElementById('wq'+n).classList.add('wvis');
+  // Update progress dots
+  for(let i=0;i<=4;i++){
+    const d=document.getElementById('wd'+i);
+    if(d){d.className='wiz-dot'+(i<n?' done-dot':i===n?' active':'');}
+  }
+}
+
+function wizBack(current) {
+  showWizStep(current-1);
+}
+
+function showWizResult() {
+  showWizStep(4);
+  const a = wizAnswers;
+  let html = '';
+
+  // Factory/EV → almost always yes
+  if(a[0]==='factory') {
+    html = `<div class="wiz-result r-yes"><h4>✅ แนะนำอย่างยิ่ง: เปลี่ยน TOU Meter</h4>
+    <p>โรงงานใช้ไฟหนักช่วง On-Peak ซึ่ง Solar ผลิตได้พอดี ประหยัดได้มากที่สุด</p>
+    <ul><li>On-Peak แพง 5.80 บ./หน่วย — Solar ผลิตทดแทนได้ 100%</li>
+    <li>ย้าย Load หนักไป Off-Peak (2.64 บ./หน่วย) ประหยัดอีก 40%</li>
+    <li>คืนทุนค่ามิเตอร์ภายใน 1–2 เดือน</li>
+    <li>ESG Reporting ได้ข้อมูลแยก Peak/Off-Peak ชัดเจน</li></ul>
+    </div>`;
+  } else if(a[0]==='ev') {
+    html = `<div class="wiz-result r-yes"><h4>✅ แนะนำมาก: เปลี่ยน TOU Meter</h4>
+    <p>ผู้ใช้รถ EV ได้ประโยชน์สูงสุดจาก TOU</p>
+    <ul><li>ชาร์จ EV กลางคืน Off-Peak ราคา 2.64 บ./หน่วย (ถูกกว่า 50%)</li>
+    <li>Solar ผลิตกลางวัน On-Peak ลดค่าไฟบ้าน</li>
+    <li>ประหยัดค่าชาร์จ EV ได้ 3,000–8,000 บาท/ปี</li>
+    <li>ค่าบริการเดือนละ +30 บาท คืนทุนภายใน 1 เดือน</li></ul>
+    </div>`;
+  } else if(a[0]==='biz') {
+    html = `<div class="wiz-result r-yes"><h4>✅ แนะนำ: เปลี่ยน TOU Meter</h4>
+    <p>SME ที่ใช้ไฟกลางวัน + มี Solar ได้ประโยชน์ชัดเจน</p>
+    <ul><li>Solar ผลิตช่วง On-Peak (5.80 บ./หน่วย) ทดแทนได้</li>
+    <li>ย้าย Load ที่ยืดหยุ่นได้ (ซักผ้า บด แช่แข็ง) ไป Off-Peak</li>
+    <li>ประหยัดรวมกับ Solar 40–70% ของค่าไฟกลางวัน</li></ul>
+    </div>`;
+  } else {
+    // House — depends on usage + solar + flexibility
+    if(a[2]==='yes-solar') {
+      if(a[1]==='night' || a[1]==='weekend') {
+        html = `<div class="wiz-result r-yes"><h4>✅ แนะนำ: เปลี่ยน TOU Meter</h4>
+        <p>คุณใช้ไฟมากกลางคืน + มี Solar ที่ผลิตกลางวัน — นี่คือ combination ที่ดีที่สุดสำหรับ TOU</p>
+        <ul><li>Solar ขายไฟช่วง On-Peak ได้ราคาดี</li>
+        <li>ใช้ไฟของตัวเองกลางคืน Off-Peak ราคาถูก</li>
+        <li>ประหยัดจากทั้ง 2 ทาง</li></ul>
+        </div>`;
+      } else if(a[3]==='flex') {
+        html = `<div class="wiz-result r-yes"><h4>✅ แนะนำ: เปลี่ยน TOU Meter</h4>
+        <p>มี Solar + ปรับพฤติกรรมได้ = ได้ประโยชน์เต็มๆ</p>
+        <ul><li>ใช้ Solar ช่วงกลางวัน (ฟรี / ถูก)</li>
+        <li>ย้ายซักผ้า/อบผ้า/ชาร์จ EV ไปกลางคืน Off-Peak</li>
+        <li>ประหยัดได้ 30–50% เพิ่มจากที่มี Solar อยู่แล้ว</li></ul>
+        </div>`;
+      } else if(a[3]==='some') {
+        html = `<div class="wiz-result r-maybe"><h4>🔶 อาจคุ้ม: ลองคำนวณก่อน</h4>
+        <p>มี Solar แต่ปรับพฤติกรรมได้บางส่วน — คุ้มหรือไม่ขึ้นกับสัดส่วน</p>
+        <ul><li>ถ้าใช้ Off-Peak &gt;50% ของทั้งหมด → คุ้มค่า</li>
+        <li>ดูบิลค่าไฟ 3 เดือน ดูว่า pattern กลางวัน vs กลางคืนเป็นอย่างไร</li>
+        <li>SolarOne จะช่วยคำนวณให้ฟรีก่อนตัดสินใจ</li></ul>
+        </div>`;
+      } else {
+        html = `<div class="wiz-result r-maybe"><h4>🔶 ไม่จำเป็นต้องเปลี่ยนตอนนี้</h4>
+        <p>มี Solar แต่ไม่สามารถปรับพฤติกรรมได้ — TOU อาจไม่ช่วยมาก</p>
+        <ul><li>ยังประหยัดได้จาก Solar ที่ผลิตกลางวัน</li>
+        <li>แต่ถ้าใช้ไฟกลางวันมาก ค่า On-Peak สูงอาจหักล้างผลดีของ Solar</li>
+        <li>แนะนำให้ปรึกษา SolarOne คำนวณก่อนตัดสินใจ</li>
+        <li>เปลี่ยนใจภายหลังได้ (รอครบ 1 ปีก่อน)</li></ul>
+        </div>`;
+      }
+    } else {
+      // No solar
+      if(a[1]==='night' && a[3]==='flex') {
+        html = `<div class="wiz-result r-yes"><h4>✅ คุ้มค่า: เปลี่ยน TOU Meter</h4>
+        <p>ไม่มี Solar แต่ใช้ไฟกลางคืนเป็นหลัก + ปรับได้ = คุ้มค่า</p>
+        <ul><li>ย้ายกิจกรรมทั้งหมดไป Off-Peak 22:00–09:00 น.</li>
+        <li>Off-Peak 2.64 บ./หน่วย vs ปกติ ~4.80 บ./หน่วย (ถูกกว่า 45%)</li>
+        <li>ค่าบริการ +30 บ./เดือน คืนทุนง่ายมาก</li></ul>
+        </div>`;
+      } else if(a[1]==='day' || a[3]==='rigid') {
+        html = `<div class="wiz-result r-no"><h4>❌ ยังไม่แนะนำ: ยังไม่ต้องเปลี่ยน TOU</h4>
+        <p>ใช้ไฟกลางวันมาก + ไม่มี Solar + ปรับพฤติกรรมไม่ได้ = อาจเสียมากกว่าได้</p>
+        <ul><li>On-Peak 5.80 บ./หน่วย แพงกว่าอัตราปกติมาก</li>
+        <li>ถ้าปรับพฤติกรรมไม่ได้ ค่าไฟอาจแพงขึ้น 20–40%</li>
+        <li>แนะนำให้ติด Solar ก่อน แล้วค่อยพิจารณา TOU</li></ul>
+        </div>`;
+      } else {
+        html = `<div class="wiz-result r-maybe"><h4>🔶 อาจคุ้ม: ขึ้นกับพฤติกรรม</h4>
+        <p>ไม่มี Solar แต่ปรับพฤติกรรมได้ — คำนวณก่อนตัดสินใจ</p>
+        <ul><li>ถ้าย้าย Load หนัก (ซักผ้า อบผ้า ฯลฯ) ไป Off-Peak ได้จริง → คุ้ม</li>
+        <li>วันเสาร์-อาทิตย์ใช้ Off-Peak ทั้งวัน ประหยัดมาก</li>
+        <li>ทดลองใช้ได้ 1 ปี แล้วค่อยประเมิน</li></ul>
+        </div>`;
+      }
+    }
+  }
+  document.getElementById('wiz-result-box').innerHTML = html;
+}
+
+function wizReset() {
+  wizAnswers = {};
+  wizStep = 0;
+  document.querySelectorAll('.wiz-step').forEach(s=>s.classList.remove('wvis'));
+  document.getElementById('wq0').classList.add('wvis');
+  for(let i=0;i<=4;i++){
+    const d=document.getElementById('wd'+i);
+    if(d)d.className='wiz-dot'+(i===0?' active':'');
+  }
+}
+</script>
+</body>
+</html>
