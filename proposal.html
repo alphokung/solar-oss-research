@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SolarOne — One-Stop Solar Service Platform</title>
+<link rel="stylesheet" href="css/proposal.css">
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Proposal Document · 2568</div>
+  <h1>Solar<span>One</span></h1>
+  <p class="hero-sub">แพลตฟอร์ม One-Stop Service ในนามรัฐ เพื่อการติดตั้ง Solar Cell ที่ครบจบ โปร่งใส และแก้ปัญหาทุก Party</p>
+  <div class="hero-tags">
+    <span class="hero-tag">☀ Solar Rooftop</span>
+    <span class="hero-tag">⚡ TOU Meter</span>
+    <span class="hero-tag">🏛 รัฐ × เอกชน</span>
+    <span class="hero-tag">📋 One-Stop Service</span>
+    <span class="hero-tag">🏠 บ้านอยู่อาศัย</span>
+    <span class="hero-tag">🏭 โรงงาน / SME</span>
+    <span class="hero-tag">MEA · PEA</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <button class="nav-btn active" onclick="showSection('overview')">📊 ภาพรวม</button>
+  <button class="nav-btn" onclick="showSection('tou')">⚡ มิเตอร์ TOU</button>
+  <button class="nav-btn" onclick="showSection('process')">📋 ขั้นตอนรวม</button>
+  <button class="nav-btn" onclick="showSection('journey')">🗺 Journey Map</button>
+  <button class="nav-btn" onclick="showSection('painpoint')">😤 Pain Points</button>
+  <button class="nav-btn" onclick="showSection('proposal')">🚀 Proposal</button>
+  <button class="nav-btn" onclick="showSection('solution')">✅ แนวทางแก้ไข</button>
+</nav>
+
+<!-- ===== OVERVIEW ===== -->
+<section id="overview" class="section active">
+  <div class="section-title">ภาพรวม: Ecosystem Solar Cell ไทย</div>
+  <p class="section-desc">สรุปทุกมิติที่เกี่ยวข้อง ก่อนเข้าสู่รายละเอียดแต่ละส่วน</p>
+
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-num">80%</div>
+      <div class="kpi-unit">ยังไม่ตัดสินใจ</div>
+      <div class="kpi-label">ผู้สนใจ Solar แต่ยังไม่ติดตั้ง (SCB EIC)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num">3–6</div>
+      <div class="kpi-unit">เดือน</div>
+      <div class="kpi-label">ระยะเวลาเฉลี่ย ตั้งแต่สมัครจน COD</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num">90</div>
+      <div class="kpi-unit">MW</div>
+      <div class="kpi-label">โควตา Solar ภาคประชาชน ทั้งประเทศ (&lt;1%)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num">2.20</div>
+      <div class="kpi-unit">บาท/หน่วย</div>
+      <div class="kpi-label">ราคารับซื้อไฟ Solar ภาคประชาชน 10 ปี</div>
+    </div>
+  </div>
+
+  <div class="pipeline">
+    <div class="pipe-step"><div class="pipe-emoji">💡</div><div class="pipe-name">ตัดสินใจ</div><div class="pipe-sub">ศึกษา/เลือกระบบ</div></div>
+    <div class="pipe-step"><div class="pipe-emoji">📄</div><div class="pipe-name">เอกสาร</div><div class="pipe-sub">อบต./กกพ./กฟ.</div></div>
+    <div class="pipe-step"><div class="pipe-emoji">✅</div><div class="pipe-name">อนุมัติ</div><div class="pipe-sub">กฟ. ตรวจ capacity</div></div>
+    <div class="pipe-step"><div class="pipe-emoji">🔧</div><div class="pipe-name">ติดตั้ง</div><div class="pipe-sub">ช่าง + วิศวกร</div></div>
+    <div class="pipe-step"><div class="pipe-emoji">🔌</div><div class="pipe-name">TOU Meter</div><div class="pipe-sub">เปลี่ยนมิเตอร์</div></div>
+    <div class="pipe-step"><div class="pipe-emoji">📝</div><div class="pipe-name">COD + สัญญา</div><div class="pipe-sub">เริ่มขายไฟ/ใช้งาน</div></div>
+    <div class="pipe-step"><div class="pipe-emoji">📈</div><div class="pipe-name">Monitoring</div><div class="pipe-sub">ติดตามระยะยาว</div></div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title"><div class="icon-circle icon-sky">🏛</div> หน่วยงานที่เกี่ยวข้อง</div>
+      <ul class="bullet">
+        <li><strong>MEA (กฟน.)</strong> — กทม. นนทบุรี สมุทรปราการ</li>
+        <li><strong>PEA (กฟภ.)</strong> — ต่างจังหวัดทั่วประเทศ</li>
+        <li><strong>กกพ.</strong> — ออกใบอนุญาต/จดแจ้ง</li>
+        <li><strong>อบต./เทศบาล</strong> — ขออนุญาตก่อสร้าง</li>
+        <li><strong>กรมโรงงาน</strong> — รง.4 (>1 MW)</li>
+        <li><strong>กกพ. เขต</strong> — &lt;200 kW ยื่นออนไลน์</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="icon-circle icon-sun">⚡</div> ประเภทระบบ</div>
+      <ul class="bullet">
+        <li><strong>On-Grid</strong> — เชื่อม กฟ. ราคาถูก ไม่มีแบตฯ</li>
+        <li><strong>Off-Grid</strong> — ไม่เชื่อม กฟ. ต้องมีแบตฯ</li>
+        <li><strong>Hybrid</strong> — On+Off Grid มีแบตฯ เสถียรสูง</li>
+        <li><strong>ไม่ขายไฟ</strong> — ผลิตใช้เอง ขั้นตอนน้อย</li>
+        <li><strong>Solar ภาคประชาชน</strong> — ขายไฟ 2.20 บ./หน่วย</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><div class="icon-circle icon-green">💰</div> ค่าใช้จ่ายหลัก</div>
+      <ul class="bullet">
+        <li>ระบบ Solar บ้าน: ~100,000–300,000 บาท</li>
+        <li>เปลี่ยน Smart Meter: ~8,500+VAT บาท</li>
+        <li>เปลี่ยน TOU Meter (MEA แรงต่ำ): ~6,640 บาท</li>
+        <li>เปลี่ยน TOU Meter (MEA แรงสูง): ~7,350 บาท</li>
+        <li>ค่าเชื่อมต่อ Grid: ~2,000 บาท (+VAT)</li>
+        <li>ลดหย่อนภาษี: สูงสุด 200,000 บาท</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TOU SECTION ===== -->
+<section id="tou" class="section">
+  <div class="section-title">มิเตอร์ TOU (Time of Use)</div>
+  <p class="section-desc">คิดค่าไฟตามช่วงเวลา — ใช้ร่วมกับ Solar ให้ประหยัดสูงสุด</p>
+
+  <div class="tou-compare">
+    <div class="tou-box peak">
+      <h3>⚡ On-Peak (ช่วงพีค)</h3>
+      <div class="tou-price">5.7982 ฿</div>
+      <div style="font-size:12px; color:#C2410C; margin-bottom:8px;">ต่อหน่วย</div>
+      <span class="tou-time">จันทร์–ศุกร์ 09:00–22:00 น.</span>
+      <br><span class="tou-time" style="margin-top:6px;">+ วันพืชมงคล</span>
+      <p style="font-size:12px; color:#C2410C; margin-top:10px;">⚠ ช่วงที่แพงที่สุด — Solar ผลิตได้พอดีช่วงนี้ ประหยัดได้มาก</p>
+    </div>
+    <div class="tou-box offpeak">
+      <h3>🌙 Off-Peak (ช่วงนอกพีค)</h3>
+      <div class="tou-price">2.6369 ฿</div>
+      <div style="font-size:12px; color:#1D4ED8; margin-bottom:8px;">ต่อหน่วย</div>
+      <span class="tou-time">จันทร์–ศุกร์ 22:00–09:00 น.</span>
+      <br><span class="tou-time" style="margin-top:6px;">เสาร์–อาทิตย์ + วันหยุดราชการ ตลอด 24 ชั่วโมง</span>
+      <p style="font-size:12px; color:#1D4ED8; margin-top:10px;">✅ ชาร์จ EV / ใช้ไฟหนักในช่วงนี้ ประหยัดกว่าปกติมาก</p>
+    </div>
+  </div>
+
+  <div class="info-box">💡 ค่าบริการรายเดือน TOU = 38.22 บาท (เทียบมิเตอร์ธรรมดา 8.19 บาท) — คุ้มเมื่อปรับพฤติกรรมการใช้ไฟและมี Solar ผลิตช่วงกลางวัน</div>
+
+  <div class="card">
+    <div class="card-title" style="margin-bottom:16px;">📋 ขั้นตอนการจดมิเตอร์ TOU (รวมอยู่ในกระบวนการ Solar)</div>
+
+    <div class="tou-steps">
+      <div class="tou-step">
+        <div class="step-num">1</div>
+        <div style="flex:1">
+          <div class="step-title">ประเมินความเหมาะสม</div>
+          <div class="step-desc">ตรวจสอบว่าใช้ไฟกลางวันน้อย/กลางคืนมาก หรือมี Solar ที่จะผลิตช่วงพีค · ดูบิลไฟย้อนหลัง 3–6 เดือน · เหมาะกับผู้ติดตั้ง Solar On-Grid ทุกราย เพราะ Solar ผลิตตรงช่วง On-Peak พอดี</div>
+        </div>
+        <span class="step-time">ก่อนสมัคร</span>
+      </div>
+      <div class="tou-step">
+        <div class="step-num">2</div>
+        <div style="flex:1">
+          <div class="step-title">เตรียมเอกสารขอเปลี่ยนมิเตอร์ TOU</div>
+          <div class="step-desc">สำเนาบัตรประชาชน · บิลค่าไฟฟ้าปัจจุบัน · แบบฟอร์มคำขอเปลี่ยนมิเตอร์ (ดาวน์โหลดจากเว็บ MEA/PEA หรือรับที่สำนักงาน)</div>
+        </div>
+        <span class="step-cost">ฟรี</span>
+      </div>
+      <div class="tou-step">
+        <div class="step-num">3</div>
+        <div style="flex:1">
+          <div class="step-title">ยื่นคำขอเปลี่ยนมิเตอร์ TOU</div>
+          <div class="step-desc">
+            <strong>ช่องทางที่ 1 — ออนไลน์:</strong> MEA Smart Life App (MEA) / PEA Smart Plus App (PEA)<br>
+            <strong>ช่องทางที่ 2 — ด้วยตนเอง:</strong> สำนักงานการไฟฟ้าเขตพื้นที่<br>
+            <em style="color:var(--green);">✅ กรณีติดตั้ง Solar: กฟ. จะเปลี่ยนมิเตอร์ให้เป็น Smart Meter TOU อัตโนมัติเมื่อผ่าน COD</em>
+          </div>
+        </div>
+        <span class="step-time">1–3 วัน</span>
+      </div>
+      <div class="tou-step">
+        <div class="step-num">4</div>
+        <div style="flex:1">
+          <div class="step-title">ชำระค่าเปลี่ยนมิเตอร์</div>
+          <div class="step-desc">
+            MEA แรงต่ำ (บ้านทั่วไป): <strong>6,640 บาท</strong><br>
+            MEA แรงสูง: <strong>7,350 บาท</strong><br>
+            Solar On-Grid ผ่านโครงการ: <strong>~8,500 + VAT = 9,095 บาท</strong> (ค่า Smart Meter รวม)<br>
+            TOU อย่างเดียว (PEA): ค่ามิเตอร์ ~6,000 + ค่าเปลี่ยน 700 บาท
+          </div>
+        </div>
+        <span class="step-cost">6,640–9,095 ฿</span>
+      </div>
+      <div class="tou-step">
+        <div class="step-num">5</div>
+        <div style="flex:1">
+          <div class="step-title">กฟ. ส่งช่างมาติดตั้งมิเตอร์ TOU ที่บ้าน</div>
+          <div class="step-desc">นัดหมายวันเวลา · ช่างการไฟฟ้ามาถอดมิเตอร์เก่า ติดมิเตอร์ดิจิทัล TOU · ตรวจสอบการอ่านค่า On-Peak / Off-Peak ถูกต้อง</div>
+        </div>
+        <span class="step-time">2–5 วันทำการ</span>
+      </div>
+      <div class="tou-step">
+        <div class="step-num">6</div>
+        <div style="flex:1">
+          <div class="step-title">เริ่มใช้งาน TOU — ปรับพฤติกรรมการใช้ไฟ</div>
+          <div class="step-desc">Solar ผลิตช่วง On-Peak ใช้ตรงนั้น ประหยัดสูงสุด · ย้ายกิจกรรมที่ใช้ไฟมาก (ซักผ้า/อบผ้า/ชาร์จ EV) ไปช่วง Off-Peak · หากไม่พอใจ ขอกลับมิเตอร์ปกติได้หลังใช้ครบ 1 ปี</div>
+        </div>
+        <span class="step-time">ต่อเนื่อง</span>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      ⚠ <strong>ข้อควรระวัง:</strong> มิเตอร์ TOU อาจทำค่าไฟแพงขึ้นหากใช้ไฟหนักช่วงกลางวัน โดยไม่มี Solar ผลิตชดเชย — แนะนำให้ประเมินก่อนเปลี่ยนเสมอ
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS OVERVIEW ===== -->
+<section id="process" class="section">
+  <div class="section-title">ขั้นตอนการติดตั้ง Solar Cell ทั้งหมด</div>
+  <p class="section-desc">รวม 2 เส้นทาง: ไม่ขายไฟ vs โครงการ Solar ภาคประชาชน (ขายไฟ)</p>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title" style="color:var(--slate);">🏠 แบบที่ 1: ใช้เอง ไม่ขายไฟ (On-Grid/Hybrid)</div>
+      <div class="tou-steps">
+        <div class="tou-step">
+          <div class="step-num" style="background:var(--slate);">1</div>
+          <div style="flex:1"><div class="step-title">ยื่นขออนุญาตก่อสร้าง (อบต./เทศบาล)</div><div class="step-desc">แบบ ข.1 + แปลน + ใบรับรองวิศวกร (โยธา) · กรณีพื้นที่ &lt;160 ตร.ม. และน้ำหนัก &lt;20 kg/ตร.ม. ยกเว้น</div></div>
+          <span class="step-time">7–30 วัน</span>
+        </div>
+        <div class="tou-step">
+          <div class="step-num" style="background:var(--slate);">2</div>
+          <div style="flex:1"><div class="step-title">ยื่นขอเชื่อมต่อ กฟน./กฟภ. ออนไลน์</div><div class="step-desc">Upload เอกสาร: Single Line Diagram + spec sheet + รูปหลังคา · กฟ. พิจารณา capacity หม้อแปลง</div></div>
+          <span class="step-time">7–10 วัน</span>
+        </div>
+        <div class="tou-step">
+          <div class="step-num" style="background:var(--slate);">3</div>
+          <div style="flex:1"><div class="step-title">ติดตั้งระบบ Solar + เดินสาย</div><div class="step-desc">ทีมช่าง + วิศวกรไฟฟ้า · ติดแผง Mounting Inverter ตู้ไฟ สายไฟ</div></div>
+          <span class="step-time">1–3 วัน</span>
+        </div>
+        <div class="tou-step">
+          <div class="step-num" style="background:var(--slate);">4</div>
+          <div style="flex:1"><div class="step-title">กฟ. ตรวจสอบ + เปลี่ยนมิเตอร์ TOU</div><div class="step-desc">ชำระค่าบริการ · กฟ. ตรวจสายภายใน · เปลี่ยนมิเตอร์เป็น Smart Meter · COD</div></div>
+          <span class="step-cost">~9,095 ฿</span>
+        </div>
+      </div>
+      <div style="margin-top:12px; font-size:12px; color:var(--green); font-weight:600;">⏱ รวม: ~1–2 เดือน (ถ้าเอกสารพร้อม)</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title" style="color:#92400E;">☀️ แบบที่ 2: Solar ภาคประชาชน (ขายไฟ)</div>
+      <div class="tou-steps">
+        <div class="tou-step">
+          <div class="step-num" style="background:var(--sun);">1</div>
+          <div style="flex:1"><div class="step-title">สมัคร Account + ยื่นคำขอออนไลน์</div><div class="step-desc">MEA: myenergy.mea.or.th · PEA: ppim.pea.co.th · Upload เอกสาร บัตรปชช. + บิลไฟ + spec sheet</div></div>
+          <span class="step-time">วันเดียว</span>
+        </div>
+        <div class="tou-step">
+          <div class="step-num" style="background:var(--sun);">2</div>
+          <div style="flex:1"><div class="step-title">กฟ. พิจารณาคำขอ + ตรวจ Capacity</div><div class="step-desc">ตรวจสอบ capacity หม้อแปลง · ประกาศรายชื่อทุก 2 สัปดาห์ (PEA)</div></div>
+          <span class="step-time">7–45 วัน</span>
+        </div>
+        <div class="tou-step">
+          <div class="step-num" style="background:var(--sun);">3</div>
+          <div style="flex:1"><div class="step-title">ยื่นเอกสารตัวจริง + เซ็นสัญญา PPA</div><div class="step-desc">ไปที่สำนักงาน กฟ. เขต · เซ็นสัญญาซื้อขายไฟ 10 ปี · ชำระค่าเชื่อมต่อ</div></div>
+          <span class="step-cost">~2,000 ฿</span>
+        </div>
+        <div class="tou-step">
+          <div class="step-num" style="background:var(--sun);">4</div>
+          <div style="flex:1"><div class="step-title">ยื่นขออนุญาตก่อสร้าง (อบต.)</div><div class="step-desc">เอกสารเหมือนแบบที่ 1 · บางพื้นที่ทำขั้นตอนนี้ก่อน/หลัง ตามคำแนะนำ กฟ.</div></div>
+          <span class="step-time">7–30 วัน</span>
+        </div>
+        <div class="tou-step">
+          <div class="step-num" style="background:var(--sun);">5</div>
+          <div style="flex:1"><div class="step-title">ติดตั้งระบบ Solar</div><div class="step-desc">ติดตั้งโดยช่าง + วิศวกร · ถ่ายรูปทุกแผง ทุกอุปกรณ์เก็บไว้</div></div>
+          <span class="step-time">1–3 วัน</span>
+        </div>
+        <div class="tou-step">
+          <div class="step-num" style="background:var(--sun);">6</div>
+          <div style="flex:1"><div class="step-title">กฟ. ตรวจ + เปลี่ยนมิเตอร์ TOU + COD</div><div class="step-desc">กฟ. ส่งช่างมาตรวจงาน · เปลี่ยนมิเตอร์เป็น Digital 2-ทิศทาง · กำหนด SCOD · ขายไฟได้</div></div>
+          <span class="step-cost">~9,095 ฿</span>
+        </div>
+      </div>
+      <div style="margin-top:12px; font-size:12px; color:var(--sun); font-weight:600;">⏱ รวม: ~2–4 เดือน (ภายใน 270 วันจากวันเซ็นสัญญา)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📁 เอกสารรวมทุกขั้นตอน</div>
+    <div class="grid-2">
+      <div>
+        <p style="font-weight:600; font-size:13px; margin-bottom:8px; color:var(--sky);">เอกสารพื้นฐาน (ทุกกรณี)</p>
+        <ul class="bullet">
+          <li>สำเนาบัตรประชาชน (เซ็นรับรอง)</li>
+          <li>บิลค่าไฟ (ไม่เกิน 3 เดือน)</li>
+          <li>Single Line Diagram (วิศวกรเซ็น + ใบ กว.)</li>
+          <li>Spec Sheet แผง + Inverter</li>
+          <li>รูปถ่ายหน้าบ้าน + แผงครบทุกแผง</li>
+          <li>รายการคำนวณโครงสร้าง + แบบแปลนหลังคา</li>
+        </ul>
+      </div>
+      <div>
+        <p style="font-weight:600; font-size:13px; margin-bottom:8px; color:var(--sun);">เพิ่มเติมสำหรับ Solar ภาคประชาชน</p>
+        <ul class="bullet">
+          <li>หนังสือมอบอำนาจ (อากรแสตมป์ 30 บาท)</li>
+          <li>แบบหักบัญชีเงินฝาก</li>
+          <li>หนังสือแจ้งข้อมูลการโอนเงิน + email</li>
+          <li>ใบ อ.1 (ถ้าพื้นที่ &gt;160 ตร.ม.)</li>
+          <li>รายชื่อ Inverter ที่ผ่านการทดสอบ</li>
+          <li>สำเนาบัตรผู้รับมอบอำนาจ (ถ้ามี)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JOURNEY MAPS ===== -->
+<section id="journey" class="section">
+  <div class="section-title">Customer Journey Map</div>
+  <p class="section-desc">เส้นทางประสบการณ์ของผู้ใช้แต่ละประเภท — ตั้งแต่ "คิดจะติด" จนถึง "ใช้งานจริง"</p>
+
+  <div class="journey-tabs">
+    <button class="journey-tab active-house" onclick="showJourney('house')">🏠 บ้านอยู่อาศัย</button>
+    <button class="journey-tab" onclick="showJourney('biz')">🏢 SME / อาคารพาณิชย์</button>
+    <button class="journey-tab" onclick="showJourney('factory')">🏭 โรงงาน / นิคม</button>
+  </div>
+
+  <!-- HOUSE -->
+  <div id="journey-house" class="journey-content visible">
+    <div style="background:var(--sun-light); border:1px solid rgba(245,166,35,0.3); border-radius:var(--radius); padding:14px 18px; margin-bottom:20px; font-size:13px; color:#78350F;">
+      <strong>Profile:</strong> เจ้าของบ้านรายย่อย · ค่าไฟ 1,500–5,000 บาท/เดือน · ต้องการลดค่าไฟ และ/หรือขายไฟภาคประชาชน · ไม่มีความรู้ด้านวิศวกรรมไฟฟ้า
+    </div>
+    <div class="journey-flow">
+      <div class="journey-node">
+        <div class="j-dot state">🤔</div>
+        <div class="j-body">
+          <div class="j-label">รับรู้ปัญหา — ค่าไฟแพง / เห็นเพื่อนบ้านติด Solar</div>
+          <div class="j-detail">ค้นหาข้อมูลใน Google, YouTube, Pantip — ได้ข้อมูลมาหลายชิ้น สับสน ไม่รู้จะเริ่มจากไหน</div>
+          <div class="j-tags"><span class="j-tag pain">😖 ข้อมูลกระจัดกระจาย</span><span class="j-tag pain">😖 สับสน On/Off/Hybrid</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot action">📞</div>
+        <div class="j-body">
+          <div class="j-label">ติดต่อบริษัทติดตั้ง 3–5 เจ้า ขอใบเสนอราคา</div>
+          <div class="j-detail">ราคาต่างกันมาก 30–50% · ไม่รู้เปรียบเทียบคุณภาพแผงอย่างไร · บางเจ้าบอกทำทุกอย่างให้ บางเจ้าบอกต้องไปทำเองที่ กฟ.</div>
+          <div class="j-tags"><span class="j-tag pain">😖 เปรียบเทียบราคาไม่ได้</span><span class="j-tag pain">😖 ไม่มั่นใจคุณภาพ</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot action">📋</div>
+        <div class="j-body">
+          <div class="j-label">เซ็นสัญญาติดตั้ง + ทำหนังสือมอบอำนาจ</div>
+          <div class="j-detail">บริษัทรับมอบอำนาจยื่นเอกสารแทน · รอประมาณ 2–4 สัปดาห์ให้ กฟ. พิจารณา Capacity · อาจถูกปฏิเสธหาก Transformer เต็ม</div>
+          <div class="j-tags"><span class="j-tag info">⏳ รอ 2–4 สัปดาห์</span><span class="j-tag pain">😖 เสี่ยงถูกปฏิเสธ</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot action">🏛</div>
+        <div class="j-body">
+          <div class="j-label">ยื่นขออนุญาตก่อสร้างกับ อบต./เทศบาล</div>
+          <div class="j-detail">บริษัทดูแลให้ หรือต้องไปเองตามพื้นที่ · ต้องมีวิศวกรโยธาเซ็นรับรองแบบ · รอ 7–30 วัน</div>
+          <div class="j-tags"><span class="j-tag info">⏳ 7–30 วัน</span><span class="j-tag cost">💰 มีค่าธรรมเนียม</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot solar">🔧</div>
+        <div class="j-body">
+          <div class="j-label">ช่างมาติดตั้ง Solar 1–3 วัน</div>
+          <div class="j-detail">ติดแผง + Mounting + Inverter + ตู้ไฟ + เดินสาย · ถ่ายรูปเอกสารให้ครบตามที่ กฟ. กำหนด · ทดสอบระบบเบื้องต้น</div>
+          <div class="j-tags"><span class="j-tag info">🔧 1–3 วัน</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot wait">⏳</div>
+        <div class="j-body">
+          <div class="j-label">กฟ. ส่งช่างมาตรวจสอบ + เปลี่ยนมิเตอร์ TOU</div>
+          <div class="j-detail">นัดหมายวันตรวจ · กฟ. ตรวจสายไฟภายใน ตรวจ Inverter · ถ้าผ่าน: เปลี่ยนมิเตอร์เป็น Smart TOU Meter ทันที · ถ้าไม่ผ่าน: แก้ไขแล้วนัดตรวจใหม่</div>
+          <div class="j-tags"><span class="j-tag pain">😖 เจ้าหน้าที่ตีความมาตรฐานต่างกัน</span><span class="j-tag cost">💰 ~9,095 บาท</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot action">📝</div>
+        <div class="j-body">
+          <div class="j-label">ไปเซ็นสัญญา PPA ที่สำนักงาน กฟ. เขต (กรณีขายไฟ)</div>
+          <div class="j-detail">ชำระค่าเชื่อมต่อ ~2,000 บาท · ลงนามสัญญาซื้อขายไฟ 10 ปี · กฟ. กำหนด SCOD</div>
+          <div class="j-tags"><span class="j-tag info">📅 ต้องไปด้วยตัวเอง</span><span class="j-tag cost">💰 ~2,000 บาท</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot done">✅</div>
+        <div class="j-body">
+          <div class="j-label">COD — เริ่มใช้งาน + ขายไฟได้</div>
+          <div class="j-detail">Solar ผลิตไฟช่วงกลางวัน ลดค่าไฟ · ไฟส่วนเกินขายกลับ กฟ. 2.20 บาท/หน่วย · เงินโอนเข้าบัญชีทุกเดือน หักจากบิลค่าไฟ</div>
+          <div class="j-tags"><span class="j-tag help">✅ ประหยัดค่าไฟ 30–70%</span><span class="j-tag help">✅ รายได้จากขายไฟ</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot wait">📊</div>
+        <div class="j-body">
+          <div class="j-label">ติดตาม Monitoring ระยะยาว</div>
+          <div class="j-detail">ดูผ่าน App บริษัท หรือ App Inverter · แต่ถ้าบริษัทเล็กหายไป หรือ App ปิด — ไม่รู้ระบบ Underperform · ไม่มีหน่วยงานกลางดูแล</div>
+          <div class="j-tags"><span class="j-tag pain">😖 บริษัทเล็กอาจหายไป</span><span class="j-tag pain">😖 ไม่มีกลาง Monitor</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SME -->
+  <div id="journey-biz" class="journey-content">
+    <div style="background:var(--sky-light); border:1px solid rgba(37,99,168,0.2); border-radius:var(--radius); padding:14px 18px; margin-bottom:20px; font-size:13px; color:var(--sky);">
+      <strong>Profile:</strong> ร้านค้า/อาคารพาณิชย์/ออฟฟิศ · ค่าไฟ 10,000–100,000 บาท/เดือน · ต้องการลดต้นทุน · มีที่ปรึกษา/บัญชีช่วย
+    </div>
+    <div class="journey-flow">
+      <div class="journey-node">
+        <div class="j-dot state">💰</div>
+        <div class="j-body">
+          <div class="j-label">วิเคราะห์ค่าไฟ — พบว่าต้นทุนสูง</div>
+          <div class="j-detail">ที่ปรึกษาหรือบัญชีชวนให้ดูเรื่อง Solar · ต้องการ ROI ชัดเจนก่อนตัดสินใจ · ต้องผ่านผู้บริหาร/คณะกรรมการ</div>
+          <div class="j-tags"><span class="j-tag info">📊 ต้องมี ROI Analysis</span><span class="j-tag pain">😖 Internal Approval ช้า</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot action">🔍</div>
+        <div class="j-body">
+          <div class="j-label">RFP — ขอใบเสนอราคาหลายบริษัท</div>
+          <div class="j-detail">ต้องการข้อมูล: Spec, ROI, Timeline, After-sales, ใบรับประกัน · บางบริษัทเสนอ Leasing (ไม่ต้องออกเงิน) · ตรวจสอบใบอนุญาตบริษัท + วิศวกร</div>
+          <div class="j-tags"><span class="j-tag pain">😖 เปรียบเทียบยาก ไม่มีมาตรฐานกลาง</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot action">📄</div>
+        <div class="j-body">
+          <div class="j-label">ยื่นเอกสาร กฟ. + กกพ. + อบต.</div>
+          <div class="j-detail">กรณีอาคารพาณิชย์ขนาดใหญ่: อาจต้องยื่น พค.2 (สำนักงานพลังงาน) เพิ่ม · ตรวจสอบว่าอาคารต้องการ รง.4 หรือไม่ · บริษัทดูแลให้ทั้งหมดในอุดมคติ — จริงๆ มักต้องไปด้วย</div>
+          <div class="j-tags"><span class="j-tag pain">😖 หลายหน่วยงาน หลายระบบ</span><span class="j-tag info">⏳ 1–3 เดือน</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot solar">🔧</div>
+        <div class="j-body">
+          <div class="j-label">ติดตั้ง — ต้องประสานกับ Building Management</div>
+          <div class="j-detail">ต้องขอเวลาหยุดระบบไฟชั่วคราว · ต้องเซ็นอนุมัติเพิ่มจาก Landlord ถ้าเช่าอาคาร · ติดตั้งใช้เวลา 3–14 วันขึ้นกับขนาด</div>
+          <div class="j-tags"><span class="j-tag pain">😖 ซับซ้อนถ้าเช่าอาคาร</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot action">⚡</div>
+        <div class="j-body">
+          <div class="j-label">จดมิเตอร์ TOU — ใช้ร่วมกับ Solar</div>
+          <div class="j-detail">เปลี่ยนมิเตอร์เป็น TOU พร้อมกับ COD · SME ได้ประโยชน์ 2 ชั้น: Solar ผลิตช่วง On-Peak + ย้าย Load หนักไป Off-Peak</div>
+          <div class="j-tags"><span class="j-tag help">✅ ประหยัดได้ทวีคูณ</span><span class="j-tag cost">💰 ~6,640–9,095 ฿</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot done">✅</div>
+        <div class="j-body">
+          <div class="j-label">COD + ขอลดหย่อนภาษี</div>
+          <div class="j-detail">ค่าใช้จ่ายติดตั้งนำไปลดหย่อนภาษีนิติบุคคล 50% ของมูลค่าการลงทุน · ต้องเก็บใบกำกับภาษีทุกใบ · ระยะคืนทุน 5–8 ปี</div>
+          <div class="j-tags"><span class="j-tag help">✅ ลดหย่อนภาษี 50%</span><span class="j-tag info">📅 คืนทุน 5–8 ปี</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FACTORY -->
+  <div id="journey-factory" class="journey-content">
+    <div style="background:var(--green-light); border:1px solid rgba(22,163,74,0.2); border-radius:var(--radius); padding:14px 18px; margin-bottom:20px; font-size:13px; color:#14532D;">
+      <strong>Profile:</strong> โรงงาน/นิคมอุตสาหกรรม · ค่าไฟ 100,000 บาท+/เดือน · ต้องการ Solar ขนาดใหญ่ 100–1,000 kW · ใช้ไฟกลางวันสูง (Peak)
+    </div>
+    <div class="journey-flow">
+      <div class="journey-node">
+        <div class="j-dot state">📊</div>
+        <div class="j-body">
+          <div class="j-label">Energy Audit + Feasibility Study</div>
+          <div class="j-detail">วิศวกรพลังงานสำรวจโรงงาน · คำนวณ Load Profile · ออกแบบขนาดระบบ Solar ที่เหมาะสม · ROI analysis รวม Leasing option</div>
+          <div class="j-tags"><span class="j-tag info">📐 ต้องใช้วิศวกรเฉพาะทาง</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot action">📋</div>
+        <div class="j-body">
+          <div class="j-label">ยื่นเอกสารหลายหน่วยงานพร้อมกัน</div>
+          <div class="j-detail">กกพ. (จดแจ้งยกเว้น) · กฟภ./กฟน. (ขอเชื่อมต่อ) · กรมโรงงาน (ถ้า &gt;1 MW ต้องขอ รง.4) · กนอ. (ถ้าอยู่ในนิคมอุตสาหกรรม) · พพ. (ถ้า &gt;200 kVA ต้องมี พค.2)</div>
+          <div class="j-tags"><span class="j-tag pain">😖 5+ หน่วยงาน</span><span class="j-tag info">⏳ 2–6 เดือน</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot action">🔌</div>
+        <div class="j-body">
+          <div class="j-label">ตรวจสอบ Transformer + Grid Connection</div>
+          <div class="j-detail">ถ้าเชื่อมแรงต่ำ: เข้า MDB โรงงานตรงๆ · ถ้าเชื่อมแรงสูง 22/33 kV: ต้องติดหม้อแปลงใหม่ 1 ลูก (~22 kV 1,000 kVA) · ค่าใช้จ่ายสูงขึ้นมาก</div>
+          <div class="j-tags"><span class="j-tag pain">😖 อาจต้องลงทุนหม้อแปลงเพิ่ม</span><span class="j-tag cost">💰 ค่าใช้จ่ายสูง</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot solar">🏗</div>
+        <div class="j-body">
+          <div class="j-label">ติดตั้ง — EPC Contractor ขนาดใหญ่</div>
+          <div class="j-detail">ใช้เวลา 2–8 สัปดาห์ · ต้องหยุดสายการผลิตบางส่วน · ต้องมีวิศวกรควบคุมงาน (วสท. มาตรฐาน 022013-22) · Rapid Shutdown ต้องติดตั้งถ้า &gt;200 kVA</div>
+          <div class="j-tags"><span class="j-tag info">🏗 2–8 สัปดาห์</span><span class="j-tag pain">😖 ต้องหยุดไลน์ผลิตบางส่วน</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot action">⚡</div>
+        <div class="j-body">
+          <div class="j-label">TOU Meter + SCADA Monitoring</div>
+          <div class="j-detail">มิเตอร์ TOU สำหรับโรงงานคิดอัตราต่างจากบ้าน · ต้องติดตั้งระบบ SCADA/Monitoring แบบ Real-time · รายงานพลังงานรายเดือนสำหรับบัญชีและ ESG Report</div>
+          <div class="j-tags"><span class="j-tag help">✅ SCADA Real-time</span><span class="j-tag info">📊 ESG Reporting</span></div>
+        </div>
+      </div>
+      <div class="journey-node">
+        <div class="j-dot done">✅</div>
+        <div class="j-body">
+          <div class="j-label">COD + Leasing Repayment หรือ Payback Period</div>
+          <div class="j-detail">ถ้าซื้อเอง: คืนทุน 6–7 ปี (ค่าไฟเริ่มต้น 50,000+ บาท/เดือน) · ถ้า Leasing: ไม่ต้องออกเงินก้อน จ่ายรายเดือนแทน · ลดหย่อนภาษีนิติบุคคล</div>
+          <div class="j-tags"><span class="j-tag help">✅ คืนทุน 6–7 ปี</span><span class="j-tag help">✅ Leasing option</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAIN POINTS SUMMARY ===== -->
+<section id="painpoint" class="section">
+  <div class="section-title">สรุป Pain Points ทั้ง 3 ฝ่าย</div>
+  <p class="section-desc">รากเหง้าของปัญหา และ Root Cause ที่ต้องแก้</p>
+
+  <table class="compare-table">
+    <tr>
+      <th>ฝ่าย</th>
+      <th>Pain Point หลัก</th>
+      <th>ผลกระทบ</th>
+      <th>ความเร่งด่วน</th>
+    </tr>
+    <tr>
+      <td class="td-label">🏠 ประชาชน</td>
+      <td class="td-before">ข้อมูลกระจัดกระจาย สับสน ไม่รู้จะเริ่มจากไหน</td>
+      <td>80% สนใจแต่ไม่ตัดสินใจ</td>
+      <td><span class="tag tag-red">🔴 สูงมาก</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">🏠 ประชาชน</td>
+      <td class="td-before">ต้นทุนสูง ขาดสินเชื่อที่เหมาะสม</td>
+      <td>&gt;50% มองว่าเป็นอุปสรรคใหญ่</td>
+      <td><span class="tag tag-red">🔴 สูงมาก</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">🏠 ประชาชน</td>
+      <td class="td-before">ขั้นตอนราชการ 3–6 เดือน หลายหน่วยงาน</td>
+      <td>ล้มเลิกระหว่างทาง</td>
+      <td><span class="tag tag-red">🔴 สูงมาก</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">🏠 ประชาชน</td>
+      <td class="td-before">โควตา Solar ภาคประชาชนจำกัด 90 MW</td>
+      <td>สัญญาเพียง 10 ปี vs เอกชน 25 ปี</td>
+      <td><span class="tag tag-yellow">🟡 สูง</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">🏠 ประชาชน</td>
+      <td class="td-before">ไม่มีระบบ Monitor หลัง COD</td>
+      <td>ระบบ Underperform ไม่รู้ตัว</td>
+      <td><span class="tag tag-yellow">🟡 สูง</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">⚡ MEA/PEA</td>
+      <td class="td-before">Transformer เต็ม — รับไฟ Solar ไม่ได้</td>
+      <td>ต้องปฏิเสธคำขอหรือให้ลดขนาด</td>
+      <td><span class="tag tag-red">🔴 สูงมาก</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">⚡ MEA/PEA</td>
+      <td class="td-before">Conflict of Interest — ยิ่งส่งเสริม Solar ยิ่งขายไฟน้อย</td>
+      <td>แรงจูงใจอนุมัติเร็วน้อยกว่าที่ควร</td>
+      <td><span class="tag tag-red">🔴 โครงสร้าง</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">⚡ MEA/PEA</td>
+      <td class="td-before">ภาระงานธุรการพุ่ง เจ้าหน้าที่ไม่พอ</td>
+      <td>พิจารณาช้า นัดตรวจล่าช้า</td>
+      <td><span class="tag tag-yellow">🟡 สูง</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">⚡ MEA/PEA</td>
+      <td class="td-before">ขาดกฎหมาย Solar กลาง อ้างกฎหมายหลายฉบับ</td>
+      <td>ขาดเอกภาพ ตีความต่างกัน</td>
+      <td><span class="tag tag-yellow">🟡 สูง</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">🏗 บริษัทติดตั้ง</td>
+      <td class="td-before">สงครามราคา กดคุณภาพ ใช้แผงต่ำกว่ามาตรฐาน</td>
+      <td>ลูกค้าเสียหาย ทำลายตลาดรวม</td>
+      <td><span class="tag tag-red">🔴 สูงมาก</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">🏗 บริษัทติดตั้ง</td>
+      <td class="td-before">ขาดช่างที่ได้มาตรฐาน ขาดวิศวกรเซ็น กว.</td>
+      <td>ติดตั้งผิด กฟ. ไม่ผ่าน COD</td>
+      <td><span class="tag tag-red">🔴 สูงมาก</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">🏗 บริษัทติดตั้ง</td>
+      <td class="td-before">After-Sales เป็นภาระระยะยาว บางรายปิดตัว</td>
+      <td>ลูกค้าหาคนรับผิดชอบไม่ได้</td>
+      <td><span class="tag tag-yellow">🟡 สูง</span></td>
+    </tr>
+    <tr>
+      <td class="td-label">🏗 บริษัทติดตั้ง</td>
+      <td class="td-before">Cash Flow ย่ำแย่ รอนานกว่าจะ COD</td>
+      <td>SME ติดตั้งบริษัทล้มได้ง่าย</td>
+      <td><span class="tag tag-yellow">🟡 สูง</span></td>
+    </tr>
+  </table>
+
+  <div class="card" style="border-left:4px solid var(--coral);">
+    <div class="card-title">🎯 Root Cause ร่วม — ต้นเหตุจริงๆ</div>
+    <div class="grid-2">
+      <ul class="bullet">
+        <li><strong>ไม่มีกฎหมาย Solar กลาง</strong> → ต้องอ้างกฎหมายหลายฉบับ ขาดเอกภาพ</li>
+        <li><strong>โควตาต่ำมาก</strong> → 90 MW ทั้งประเทศ น้อยกว่า 1% ของ Renewable</li>
+        <li><strong>Conflict of Interest ของ กฟ.</strong> → ทั้ง Distributor และ Gatekeeper ในเวลาเดียวกัน</li>
+      </ul>
+      <ul class="bullet">
+        <li><strong>ไม่มีมาตรฐานกลาง</strong> สำหรับบริษัทติดตั้ง ทำให้เปรียบเทียบไม่ได้</li>
+        <li><strong>ไม่มี One-Stop Point</strong> → ประชาชนต้องวิ่งทีละหน่วยงาน</li>
+        <li><strong>ขาด Digital Infrastructure</strong> → ระบบ PPIM/MyEnergy ยังแยกกัน ไม่ seamless</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROPOSAL ===== -->
+<section id="proposal" class="section">
+  <div class="proposal-hero">
+    <h2>SolarOne — <span>แพลตฟอร์มรัฐ</span><br>One-Stop Solar Service</h2>
+    <p>หน่วยงานกลางในนามรัฐที่เข้าไปเชื่อม MEA/PEA/กกพ./อบต. ให้เป็นหนึ่งเดียว พร้อมบริหารจัดการบริษัทติดตั้งที่ได้มาตรฐาน และดูแลประชาชนแบบครบจบตั้งแต่ต้นจนจบ</p>
+  </div>
+
+  <div class="party-grid">
+    <div class="party-card citizen">
+      <div class="party-title">🏠 ประชาชน ได้รับ</div>
+      <div class="party-item"><span class="check">✅</span> คำแนะนำ + ออกแบบระบบฟรี</div>
+      <div class="party-item"><span class="check">✅</span> เปรียบเทียบบริษัท Certified</div>
+      <div class="party-item"><span class="check">✅</span> บริษัทดำเนินเอกสารทุกอย่าง</div>
+      <div class="party-item"><span class="check">✅</span> ติดตามสถานะ Real-time</div>
+      <div class="party-item"><span class="check">✅</span> สินเชื่อดอกเบี้ยพิเศษ</div>
+      <div class="party-item"><span class="check">✅</span> Monitoring ตลอดอายุสัญญา</div>
+      <div class="party-item"><span class="check">✅</span> ช่วยขอลดหย่อนภาษี</div>
+    </div>
+    <div class="party-card biz">
+      <div class="party-title">⚡ MEA/PEA ได้รับ</div>
+      <div class="party-item"><span class="check">✅</span> เอกสารครบก่อนยื่น ลดภาระ</div>
+      <div class="party-item"><span class="check">✅</span> ระบบ Digital เชื่อมกัน</div>
+      <div class="party-item"><span class="check">✅</span> ข้อมูล Grid Capacity ล่วงหน้า</div>
+      <div class="party-item"><span class="check">✅</span> ลดการปฏิเสธซ้ำซ้อน</div>
+      <div class="party-item"><span class="check">✅</span> รายได้ใหม่จาก TOU Meter</div>
+      <div class="party-item"><span class="check">✅</span> ข้อมูล Distributed Generation</div>
+      <div class="party-item"><span class="check">✅</span> ลดปัญหา Anti-islanding</div>
+    </div>
+    <div class="party-card pea">
+      <div class="party-title">🏗 บริษัทติดตั้ง ได้รับ</div>
+      <div class="party-item"><span class="check">✅</span> Certification มาตรฐานกลาง</div>
+      <div class="party-item"><span class="check">✅</span> Lead generation จาก Platform</div>
+      <div class="party-item"><span class="check">✅</span> ระบบเอกสารมาตรฐาน ลด Error</div>
+      <div class="party-item"><span class="check">✅</span> Fast-track approval (48 ชม.)</div>
+      <div class="party-item"><span class="check">✅</span> ระบบ Payment ที่โปร่งใส</div>
+      <div class="party-item"><span class="check">✅</span> After-sales platform รวม</div>
+      <div class="party-item"><span class="check">✅</span> รับงานต่อเนื่องจาก Monitoring</div>
+    </div>
+  </div>
+
+  <div class="section-title" style="font-size:18px; margin-bottom:16px;">บริการหลัก 6 Module</div>
+
+  <div class="service-grid">
+    <div class="service-card">
+      <div class="service-icon">🔍</div>
+      <div class="service-name">1. Solar Assessment</div>
+      <div class="service-desc">ประเมินความเหมาะสม ออกแบบระบบ คำนวณ ROI และเปรียบเทียบแบบ On/Off/Hybrid ให้ตรงกับความต้องการจริง</div>
+      <div class="service-badges">
+        <span class="badge badge-sky">ฟรี</span>
+        <span class="badge badge-green">AI-powered</span>
+        <span class="badge badge-sun">Online + Field</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏅</div>
+      <div class="service-name">2. Certified Contractor Network</div>
+      <div class="service-desc">เครือข่ายบริษัทติดตั้งที่ผ่านการ Certify มาตรฐานแผง อุปกรณ์ และช่าง ราคาโปร่งใส เปรียบเทียบได้ มีประกันผลงาน</div>
+      <div class="service-badges">
+        <span class="badge badge-green">มาตรฐาน IEC</span>
+        <span class="badge badge-purple">ราคาโปร่งใส</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <div class="service-name">3. Permit & Paperwork Hub</div>
+      <div class="service-desc">ดำเนินเอกสารทุกหน่วยงานแทนประชาชน ตั้งแต่ อบต. → กกพ. → กฟน./กฟภ. พร้อมระบบ Track สถานะ Real-time</div>
+      <div class="service-badges">
+        <span class="badge badge-sky">One-Click Submit</span>
+        <span class="badge badge-sun">Track ได้</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚡</div>
+      <div class="service-name">4. TOU & Grid Connection Service</div>
+      <div class="service-desc">ดูแลขั้นตอนเปลี่ยนมิเตอร์ TOU ทำสัญญา PPA ประสานนัด COD กับ กฟ. ลดเวลาจาก 3 เดือน เหลือ 3 สัปดาห์</div>
+      <div class="service-badges">
+        <span class="badge badge-green">Fast-track</span>
+        <span class="badge badge-purple">48-hr Approval</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💰</div>
+      <div class="service-name">5. Financial Service</div>
+      <div class="service-desc">สินเชื่อดอกเบี้ยต่ำร่วมกับสถาบันการเงินพันธมิตร รูปแบบ Leasing/ผ่อนชำระ ช่วยยื่นขอลดหย่อนภาษี 200,000 บาท</div>
+      <div class="service-badges">
+        <span class="badge badge-sky">ดอกเบี้ยพิเศษ</span>
+        <span class="badge badge-sun">Tax Refund</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <div class="service-name">6. Lifetime Monitoring</div>
+      <div class="service-desc">ระบบ Monitor ผ่าน App กลาง ดูประสิทธิภาพ Solar ยอดขายไฟ ค่าไฟที่ประหยัด แจ้งเตือนเมื่อระบบผิดปกติ ตลอดอายุสัญญา</div>
+      <div class="service-badges">
+        <span class="badge badge-green">Real-time</span>
+        <span class="badge badge-purple">Alert System</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOLUTION ===== -->
+<section id="solution" class="section">
+  <div class="section-title">แนวทางแก้ไข — ข้อเสนอแนะสำหรับทุก Party</div>
+  <p class="section-desc">สิ่งที่ SolarOne จะเข้าไปเปลี่ยน พร้อม KPI วัดผล</div>
+
+  <table class="compare-table" style="margin-bottom:24px;">
+    <tr>
+      <th>ปัญหา</th>
+      <th>แนวทางแก้</th>
+      <th>ฝ่ายที่รับผิดชอบ</th>
+      <th>เป้าหมาย</th>
+    </tr>
+    <tr>
+      <td class="td-label">ข้อมูลกระจัดกระจาย</td>
+      <td class="td-after">Portal กลาง + AI Chatbot แนะนำระบบที่เหมาะสม</td>
+      <td>SolarOne Platform</td>
+      <td>80% ตัดสินใจภายใน 2 สัปดาห์</td>
+    </tr>
+    <tr>
+      <td class="td-label">ขั้นตอน 3–6 เดือน</td>
+      <td class="td-after">API เชื่อม อบต./กกพ./กฟ. ยื่นครั้งเดียว ได้ทุกอนุมัติ</td>
+      <td>SolarOne + กฟ. + กรมฯ</td>
+      <td>ลดเหลือ &lt;45 วัน</td>
+    </tr>
+    <tr>
+      <td class="td-label">บริษัทคุณภาพต่ำ</td>
+      <td class="td-after">ระบบ Certification + Rating + ประกันผลงาน 5 ปี กลาง</td>
+      <td>SolarOne + กกพ.</td>
+      <td>Complaint Rate &lt;5%</td>
+    </tr>
+    <tr>
+      <td class="td-label">Transformer เต็ม</td>
+      <td class="td-after">Dashboard Capacity Grid แบบ Real-time ให้ประชาชนเห็นก่อนสมัคร</td>
+      <td>SolarOne + MEA/PEA</td>
+      <td>ลด Rejection 80%</td>
+    </tr>
+    <tr>
+      <td class="td-label">โควตา Solar 90 MW</td>
+      <td class="td-after">ผลักดัน กพช. ขยายโควตา + เพิ่มสัญญาเป็น 20 ปี</td>
+      <td>กระทรวงพลังงาน + SolarOne</td>
+      <td>เพิ่มเป็น 500 MW</td>
+    </tr>
+    <tr>
+      <td class="td-label">สินเชื่อไม่มี</td>
+      <td class="td-after">MOU กับ ธอส./ธกส./KTB สินเชื่อ Solar ดอกเบี้ย &lt;3%</td>
+      <td>SolarOne + สถาบันการเงินรัฐ</td>
+      <td>เข้าถึงสินเชื่อ 70%</td>
+    </tr>
+    <tr>
+      <td class="td-label">ไม่มี Monitor หลัง COD</td>
+      <td class="td-after">Platform Monitor ส่วนกลาง 10 ปี เชื่อมกับบริษัทติดตั้งทุกราย</td>
+      <td>SolarOne Platform</td>
+      <td>100% ระบบมี Monitor</td>
+    </tr>
+    <tr>
+      <td class="td-label">กฎหมายขาดเอกภาพ</td>
+      <td class="td-after">ผลักดัน พ.ร.บ. Solar Rooftop ฉบับเฉพาะ</td>
+      <td>กระทรวงพลังงาน + รัฐสภา</td>
+      <td>บังคับใช้ภายใน 2 ปี</td>
+    </tr>
+  </table>
+
+  <div class="section-title" style="font-size:18px; margin-bottom:16px;">KPI ที่วัดผลได้</div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-num">&lt;45</div>
+      <div class="kpi-unit">วัน</div>
+      <div class="kpi-label">เป้าหมายระยะเวลาสมัครจน COD (จาก 3–6 เดือน)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num">500</div>
+      <div class="kpi-unit">MW</div>
+      <div class="kpi-label">เป้าหมายโควตา Solar ภาคประชาชน (จาก 90 MW)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num">&lt;3%</div>
+      <div class="kpi-unit">ดอกเบี้ย</div>
+      <div class="kpi-label">สินเชื่อพิเศษ Solar ผ่าน SolarOne</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-num">100%</div>
+      <div class="kpi-unit">Track</div>
+      <div class="kpi-label">ระบบ Solar ทุกรายมี Monitoring หลัง COD</div>
+    </div>
+  </div>
+
+  <div class="card" style="border-top:4px solid var(--sun);">
+    <div class="card-title" style="font-size:17px; margin-bottom:16px;">🗓 Roadmap การดำเนินงาน</div>
+    <div class="grid-3">
+      <div style="background:var(--sun-light); border-radius:var(--radius); padding:16px;">
+        <div style="font-weight:700; color:#92400E; margin-bottom:10px; font-size:14px;">Phase 1 (0–6 เดือน)<br>Foundation</div>
+        <ul class="bullet">
+          <li>จัดตั้งหน่วยงาน SolarOne</li>
+          <li>MOU กับ MEA, PEA, กกพ.</li>
+          <li>พัฒนา Portal + App MVP</li>
+          <li>Certification บริษัทนำร่อง 50 ราย</li>
+          <li>Pilot กรุงเทพฯ + 3 จังหวัด</li>
+        </ul>
+      </div>
+      <div style="background:var(--sky-light); border-radius:var(--radius); padding:16px;">
+        <div style="font-weight:700; color:var(--sky); margin-bottom:10px; font-size:14px;">Phase 2 (6–18 เดือน)<br>Scale</div>
+        <ul class="bullet">
+          <li>API เชื่อมระบบ กกพ./กฟ./อบต.</li>
+          <li>Fast-track 48 ชม. เต็มรูปแบบ</li>
+          <li>สินเชื่อ Solar ร่วม ธอส./ธกส.</li>
+          <li>ขยาย Certified บริษัท 500 ราย</li>
+          <li>Dashboard Capacity Grid แบบ Live</li>
+        </ul>
+      </div>
+      <div style="background:var(--green-light); border-radius:var(--radius); padding:16px;">
+        <div style="font-weight:700; color:#14532D; margin-bottom:10px; font-size:14px;">Phase 3 (18 เดือน+)<br>Ecosystem</div>
+        <ul class="bullet">
+          <li>พ.ร.บ. Solar Rooftop เฉพาะ</li>
+          <li>ขยายโควตาเป็น 500 MW</li>
+          <li>Carbon Credit Platform</li>
+          <li>Peer-to-peer Energy Trading</li>
+          <li>ขยายไป SME และโรงงานเต็มรูป</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:20px;">
+    <strong>สรุปวิสัยทัศน์ SolarOne:</strong> แพลตฟอร์มรัฐที่ไม่ได้เป็น "ผู้ขาย" แต่เป็น "ผู้ดูแลมาตรฐาน ผู้ประสานงาน และผู้รับประกัน" ให้กับทุก Party — ประชาชนได้ความสะดวก, การไฟฟ้าได้ข้อมูล Grid ที่ดีขึ้น, บริษัทที่ดีได้เวทีที่ยุติธรรม
+  </div>
+</section>
+
+<script src="js/proposal.js"></script>
+</body>
+</html>
